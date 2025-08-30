@@ -1,9 +1,7 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-
-
-@theme inline {
+@theme {
 
   --font-mono: var(--font-dm-sans);
 }
