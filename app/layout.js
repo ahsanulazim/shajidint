@@ -1,14 +1,13 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
+import Navbar from "../Components/Navbar";
+import ThemeProvider from "@/Context/ThemeContext";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "700"],
 });
 
 export const metadata = {
@@ -20,9 +19,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${dmSans.variable} font-mono antialiased`}
       >
-        {children}
+        <ThemeProvider>
+          <Navbar />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
