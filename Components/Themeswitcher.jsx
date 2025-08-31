@@ -2,14 +2,14 @@
 import { ThemeContext } from "@/Context/ThemeContext";
 import { useContext } from "react";
 
-export default function Themeswitcher({ className }) {
+export default function ThemeSwitcher({ className }) {
 
     const { theme, toggleTheme } = useContext(ThemeContext);
 
     return (
         <label className={`swap swap-rotate ${className ? className : ""}`} >
             {/* this hidden checkbox controls the state */}
-            <input type="checkbox" className="theme-controller" onChange={() => toggleTheme()} />
+            <input type="checkbox" className="theme-controller" onChange={toggleTheme} checked={theme} />
 
             {/* sun icon */}
             <svg
