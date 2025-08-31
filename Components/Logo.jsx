@@ -7,6 +7,6 @@ export default function Logo() {
     const { theme } = useContext(ThemeContext);
 
     return (
-        <img src={theme ? "/Shajid-International-Logo.svg" : "/Shajid-International-Logo-dark.svg"} alt="Shajid International Logo" className="w-full max-w-32" />
+        <img src={theme ? "/Shajid-International-Logo.svg" : "/Shajid-International-Logo-dark.svg"} alt="Shajid International Logo" className="w-full max-w-28 md:max-w-32" />
     )
 }
