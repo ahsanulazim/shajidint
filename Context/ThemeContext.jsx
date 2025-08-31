@@ -8,13 +8,13 @@ export default function ThemeProvider({ children }) {
     const [theme, setTheme] = useState(true);
 
     function toggleTheme() {
-        setTheme(!theme);
+        setTheme(prev => !prev);
     }
 
     useEffect(() => {
         const localTheme = localStorage.getItem("theme");
         if (localTheme) {
-            setTheme(localTheme === "light" ? true : false);
+            setTheme(localTheme === "light");
             document.documentElement.setAttribute("data-theme", localTheme);
         } else {
             setTheme(true);
@@ -23,8 +23,9 @@ export default function ThemeProvider({ children }) {
     }, []);
 
     useEffect(() => {
-        localStorage.setItem("theme", theme ? "light" : "dark");
-        document.documentElement.setAttribute("data-theme", theme ? "light" : "dark");
+        const currentTheme = theme ? "light" : "dark";
+        localStorage.setItem("theme", currentTheme);
+        document.documentElement.setAttribute("data-theme", currentTheme);
     }, [theme]);
 
     return (

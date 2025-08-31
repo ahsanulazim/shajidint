@@ -9,7 +9,7 @@ export default function ThemeSwitcher({ className }) {
     return (
         <label className={`swap swap-rotate ${className ? className : ""}`} >
             {/* this hidden checkbox controls the state */}
-            <input type="checkbox" className="theme-controller" onChange={toggleTheme} checked={theme} />
+            <input type="checkbox" className="theme-controller" onChange={toggleTheme} checked={!theme} />
 
             {/* sun icon */}
             <svg
