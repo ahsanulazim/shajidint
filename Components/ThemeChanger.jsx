@@ -2,7 +2,7 @@
 import { ThemeContext } from "@/Context/ThemeContext";
 import { useContext } from "react";
 
-export default function ThemeSwitcher({ className }) {
+export default function ThemeChanger({ className }) {
 
     const { theme, toggleTheme } = useContext(ThemeContext);
 

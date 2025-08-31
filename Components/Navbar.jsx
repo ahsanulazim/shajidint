@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ThemeSwitcher from "./ThemeSwitcher";
+import ThemeChanger from "./ThemeChanger";
 import Logo from "./Logo";
 
 export default function Navbar() {
@@ -52,7 +52,7 @@ export default function Navbar() {
                         </ul>
                     </div>
                     <div className="navbar-end">
-                        <ThemeSwitcher className="mr-3" />
+                        <ThemeChanger className="mr-3" />
                         <a className="btn">Button</a>
                     </div>
 
