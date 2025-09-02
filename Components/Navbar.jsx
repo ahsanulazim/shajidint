@@ -20,7 +20,7 @@ export default function Navbar() {
             <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col">
                 {/* Navbar */}
-                <div className="navbar w-full max-w-[1440px] mx-auto">
+                <div className="navbar lg:px-10 w-full max-w-[1440px] mx-auto">
                     <div className="flex-none lg:hidden">
                         <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
                             <svg
