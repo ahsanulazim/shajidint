@@ -52,7 +52,7 @@ export default function Navbar() {
                     </div>
                     <div className="navbar-end">
                         <ThemeChanger className="mr-3" />
-                        <Link href="/projects" className=""><button className="btn text-white bg-second/90 border-second shadow-second shadow-xs hover:bg-second">Projects</button></Link>
+                        <Link href="/projects" className=""><button className="btn text-white rounded-lg bg-second/90 border-second shadow-second shadow-xs hover:bg-second">Projects</button></Link>
                     </div>
 
 
