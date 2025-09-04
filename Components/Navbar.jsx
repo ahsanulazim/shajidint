@@ -7,7 +7,6 @@ export default function Navbar() {
     const nav = <>
         <li><Link href="/">Home</Link></li>
         <li><Link href="/services">Services</Link></li>
-        <li><Link href="/projects">Projects</Link></li>
         <li><Link href="/whoweare">Who We Are</Link></li>
         <li><Link href="/team">Team</Link></li>
         <li><Link href="/contact">Contact</Link></li>
@@ -53,7 +52,7 @@ export default function Navbar() {
                     </div>
                     <div className="navbar-end">
                         <ThemeChanger className="mr-3" />
-                        <a className="btn">Button</a>
+                        <Link href="/projects" className=""><button className="btn text-white bg-second/90 border-second shadow-second shadow-xs hover:bg-second">Projects</button></Link>
                     </div>
 
 
