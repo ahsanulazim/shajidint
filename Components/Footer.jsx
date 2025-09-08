@@ -41,7 +41,7 @@ export default function Footer() {
             </footer>
             <footer className="footer sm:footer-horizontal footer-center bg-base-300 text-base-content p-4">
                 <aside>
-                    <p>Copyright © {new Date().getFullYear()} - All right reserved by Shajid International. Developed by <a className="link" href="https://www.fiverr.com/ahsanulazim6" target="_blank">Ahsanul Azim Plabon</a></p>
+                    <p className="text-gray-500"><span className="text-base-content">Copyright © {new Date().getFullYear()} </span>- All right reserved by <span className="text-base-content">Shajid International.</span> Developed by <a className="link text-base-content" href="https://www.fiverr.com/ahsanulazim6" target="_blank">Ahsanul Azim Plabon</a></p>
                 </aside>
             </footer>
         </div>

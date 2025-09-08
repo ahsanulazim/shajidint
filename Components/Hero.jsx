@@ -1,25 +1,25 @@
 import Link from "next/link";
-import "./Hero.css";
+import { IoIosArrowForward } from "react-icons/io";
+import "./Hero.css"
 
 export default function Hero() {
     return (
-        <div className="hero min-h-screen justify-items-normal">
-            <div className="hero-content px-5 lg:px-10 max-w-[1440px] w-full justify-between flex-col lg:flex-row mx-auto">
 
-                <div>
-                    <h2 className="text-lg sm:text-2xl mb-2 opacity-70">Equipping Forces. Securing Nations</h2>
-                    <h1 className="text-3xl sm:text-6xl font-bold text-balance">Gear for defense and mission success</h1>
-                    <p className="py-6">
-                        Explore our range of tactical gear, defense equipment, and mission-critical supplies trusted by professionals worldwide.
+        <section className="hero min-h-screen" data-theme="dark">
+            <div className="hero-content text-center max-w-[1440px] mx-auto">
+                <div className="">
+                    <h2 className="badge badge-outline badge-success badge-xl py-5 mb-3 uppercase"><div className="inline-grid *:[grid-area:1/1]">
+                        <div className="status status-success animate-ping"></div>
+                        <div className="status status-success"></div>
+                    </div> Mission</h2>
+                    <h1 className="font-bold text-balance text-7xl tracking-tight">Protect Your World</h1>
+                    <p className="py-6 text-gray-400 text-balance tracking-tighter">
+                        We believe in a world where peace is lived, not just imagined, where safety and freedom are rights, not privileges. But peace demands strength. That's why we support those who protect it, delivering mission-ready gear to uphold security and sovereignty.
                     </p>
-                    <Link href="/contact"><button className="btn text-white rounded-lg bg-second/90 border-second shadow-second shadow-xs hover:bg-second">Contact Us</button></Link>
-                    <Link href="/projects"><button className="btn rounded-lg border-second/95 hover:border-second hover:bg-second hover:text-white btn-outline ms-5">Projects</button></Link>
+                    <Link href="/projects"><button className="btn btn-wide bg-white hover:bg-white/85 text-black rounded-full">What We Do <IoIosArrowForward /></button></Link>
                 </div>
-                <img
-                    src="/Hero.png"
-                    className="max-w-xl w-full rounded-lg"
-                />
+
             </div>
-        </div>
+        </section>
     )
 }

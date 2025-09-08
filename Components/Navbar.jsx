@@ -1,8 +1,6 @@
 import Link from "next/link";
-import ThemeChanger from "./ThemeChanger";
-import Logo from "./Logo";
 
-export default function Navbar() {
+export default function Navbar({ glass }) {
 
     const nav = <>
         <li><Link href="/">Home</Link></li>
@@ -15,11 +13,11 @@ export default function Navbar() {
 
 
     return (
-        <header className="drawer">
+        <header className={`drawer transition-all duration-300 fixed ${glass ? "bg-black/80 backdrop-blur-xs z-10 border-b-[0.5px] border-b-gray-600" : "bg-transparent"}`} data-theme="dark">
             <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col">
                 {/* Navbar */}
-                <div className="navbar lg:px-10 w-full max-w-[1440px] mx-auto">
+                <div className="navbar lg:px-10 w-full max-w-[1440px] mx-auto md:min-h-20">
                     <div className="flex-none lg:hidden">
                         <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
                             <svg
@@ -42,7 +40,8 @@ export default function Navbar() {
 
                     <div className="navbar-start">
                         <Link href="/">
-                            <Logo />
+                            <img src="/Shajid-International-Logo-dark.svg" alt="Shajid International Logo" className="w-full max-w-28 md:max-w-32" />
+
                         </Link>
                     </div>
                     <div className="navbar-center hidden lg:flex">
@@ -51,8 +50,7 @@ export default function Navbar() {
                         </ul>
                     </div>
                     <div className="navbar-end">
-                        <ThemeChanger className="mr-3" />
-                        <Link href="/projects" className=""><button className="btn text-white rounded-lg bg-second/90 border-second shadow-second shadow-xs hover:bg-second">Projects</button></Link>
+                        <Link href="/projects" className=""><button className="btn btn-outline border-white/40 rounded-full hover:bg-transparent hover:border-white ">Projects</button></Link>
                     </div>
 
 

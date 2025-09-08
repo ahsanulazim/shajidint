@@ -1,0 +1,16 @@
+.custom-dot-list {
+    justify-content: flex-end;
+    padding: 0 25px 15px 0;
+}
+
+.custom-dot-list li button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    background: #ffffff70;
+}
+
+.custom-dot-list li.react-multi-carousel-dot--active button {
+    background: white;
+}

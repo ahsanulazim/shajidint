@@ -1,5 +1,8 @@
 @import "tailwindcss";
-@plugin "daisyui";
+
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
 
 @theme {
 
@@ -8,7 +11,6 @@
   --color-main: #132549;
   --color-second: #1E3A8A;
 }
-
 
 body {
 
