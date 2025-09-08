@@ -4,7 +4,15 @@ export default function Navbar({ glass }) {
 
     const nav = <>
         <li><Link href="/">Home</Link></li>
-        <li><Link href="/services">Services</Link></li>
+        <li><details className="dropdown">
+            <summary>Services</summary>
+            <ul className="menu dropdown-content rounded-box z-1 w-52 p-2 shadow-sm">
+                <li><a>Repair and Renovation</a></li>
+                <li><a>Life Cycle Support</a></li>
+                <li><a>Technology Transfer</a></li>
+                <li><a>Sales & Logistics</a></li>
+            </ul>
+        </details></li>
         <li><Link href="/whoweare">Who We Are</Link></li>
         <li><Link href="/team">Team</Link></li>
         <li><Link href="/contact">Contact</Link></li>
@@ -13,7 +21,7 @@ export default function Navbar({ glass }) {
 
 
     return (
-        <header className={`drawer transition-all duration-300 fixed ${glass ? "bg-black/80 backdrop-blur-xs z-10 border-b-[0.5px] border-b-gray-600" : "bg-transparent"}`} data-theme="dark">
+        <header className={`drawer transition-all duration-300 fixed z-10 ${glass ? "bg-black/80 backdrop-blur-xs border-b-[0.5px] border-b-gray-600" : "bg-transparent"}`} data-theme="dark">
             <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col">
                 {/* Navbar */}
@@ -60,7 +68,21 @@ export default function Navbar({ glass }) {
                 <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
                 <ul className="menu bg-base-200 min-h-full w-80 p-4">
                     {/* Sidebar content here */}
-                    {nav}
+                    <li><Link href="/">Home</Link></li>
+                    <li>
+                        <details>
+                            <summary>Services</summary>
+                            <ul>
+                                <li><a>Repair and Renovation</a></li>
+                                <li><a>Life Cycle Support</a></li>
+                                <li><a>Technology Transfer</a></li>
+                                <li><a>Sales & Logistics</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li><Link href="/whoweare">Who We Are</Link></li>
+                    <li><Link href="/team">Team</Link></li>
+                    <li><Link href="/contact">Contact</Link></li>
                 </ul>
             </menu>
         </header>

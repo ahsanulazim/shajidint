@@ -13,7 +13,7 @@ export default function Footer() {
 
 
     return (
-        <div className="bg-main" data-theme="dark">
+        <div className="bg-black" data-theme="dark">
             <footer className="footer sm:footer-horizontal grid-rows-2 lg:grid-rows-1 max-w-[1440px] mx-auto text-base-content px-5 py-10 sm:p-14">
                 <aside>
                     <img src="/Shajid-International-Logo-dark.svg" alt="Shajid International" className="w-full max-w-44 mb-5" />
