@@ -7,10 +7,10 @@ import "./HeroCarousel.css"
 export default function HeroCarousel() {
 
   const images = [
-    { src: '/carousel/army 1.webp', alt: 'army 1' },
-    { src: '/carousel/army 2.webp', alt: 'army 2' },
-    { src: '/carousel/army 3.webp', alt: 'army 3' },
-    { src: '/carousel/army 4.webp', alt: 'army 4' },
+    { id: 0, src: '/carousel/army 1.webp', title: 'Tank', des: 'Armored Military Vehicle' },
+    { id: 1, src: '/carousel/army 2.webp', title: 'Armored Vehicle', des: 'Armored Military Vehicle' },
+    { id: 2, src: '/carousel/army 3.webp', title: 'Army', des: 'Weapon and Ammunition' },
+    { id: 3, src: '/carousel/army 4.webp', title: 'Helicopter', des: 'Military Helicopter' },
   ];
 
   const responsive = {
@@ -27,7 +27,8 @@ export default function HeroCarousel() {
         ssr={true}
         arrows
         removeArrowOnDeviceType={["desktop", "tablet", "mobile"]}
-        autoPlaySpeed={1000}
+        autoPlay={true}
+        autoPlaySpeed={2000}
         centerMode={false}
         className="mx-auto rounded-2xl border-2 border-white max-w-[1440px]"
         containerClass="container"
@@ -52,8 +53,14 @@ export default function HeroCarousel() {
         slidesToSlide={1}
         swipeable
       >
-        {images.map((image, index) => (
-          <img src={image.src} alt={image.alt} key={index} className="block h-full m-auto w-full" />
+        {images.map((image) => (
+          <div className="relative h-full m-auto w-full">
+            <img src={image.src} alt={image.title} key={image.id} className=" h-full w-full object-cover" />
+            <div className="absolute bottom-5 left-5 text-white p-3 rounded-md max-w-xs">
+              <h3 className="text-2xl tracking-tight">{image.title}</h3>
+              <p className="text-gray-400">{image.des}</p>
+            </div>
+          </div>
         ))}
       </Carousel>
     </>

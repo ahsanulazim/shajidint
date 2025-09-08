@@ -14,3 +14,22 @@
 .custom-dot-list li.react-multi-carousel-dot--active button {
     background: white;
 }
+
+@media screen and (max-width: 1024px) {
+    .custom-dot-list {
+        justify-content: center;
+        padding: 0 0 15px 0;
+    }
+}
+
+
+@media screen and (max-width: 640px) {
+    .custom-dot-list {
+        padding: 0 0 8px 0;
+    }
+
+    .custom-dot-list li button {
+        width: 5px;
+        height: 5px;
+    }
+}
