@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <main>
         <Hero />
-        <section className="bg-black pb-15 px-5 lg:px-10">
+        <section className="hidden lg:block bg-black pb-15 px-5 lg:px-10">
           <HeroCarousel />
         </section>
         <Services />
