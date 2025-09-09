@@ -11,13 +11,13 @@ export default function Home() {
         <section className="hidden lg:block bg-black pb-15 px-5 lg:px-10">
           <HeroCarousel />
         </section>
-        <section className="bg-black">
-          <div className="text-center">
+        <section className="bg-neutral-900 py-10">
+          {/* <div className="text-center">
             <h2 className="badge badge-outline badge-success md:badge-xl py-5 mb-3 uppercase"><div className="inline-grid *:[grid-area:1/1]">
               <div className="status status-success animate-ping"></div>
               <div className="status status-success"></div>
             </div> Enlistments</h2>
-          </div>
+          </div> */}
           <LogoMarquee />
         </section>
         <Services />

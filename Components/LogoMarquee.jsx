@@ -18,7 +18,7 @@ export default function LogoMarquee() {
             autoPlay={true}
             autoPlaySpeed={2000}
             centerMode={false}
-            className="max-w-[1440px] mx-auto py-10"
+            className="max-w-[1440px] mx-auto"
             containerClass="container-with-dots"
             dotListClass=""
             draggable
