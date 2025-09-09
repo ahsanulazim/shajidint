@@ -16,7 +16,7 @@ export default function Hero() {
                     <p className="py-6 text-gray-400 text-balance tracking-tighter">
                         We believe in a world where peace is lived, not just imagined, where safety and freedom are rights, not privileges. But peace demands strength, we support those who protect it, delivering mission-ready gear to uphold security and sovereignty.
                     </p>
-                    <Link href="/projects"><button className="btn btn-wide bg-white hover:bg-white/85 text-black rounded-full">What We Do <IoIosArrowForward /></button></Link>
+                    <Link href="/projects"><button className="btn btn-wide bg-white hover:bg-white/85 text-black !rounded-full">What We Do <IoIosArrowForward /></button></Link>
                 </div>
 
             </div>
