@@ -13,7 +13,7 @@ export default function Footer() {
 
 
     return (
-        <div className="bg-black" data-theme="dark">
+        <div className="bg-base-300" data-theme="dark">
             <footer className="footer sm:footer-horizontal grid-rows-2 lg:grid-rows-1 max-w-[1440px] mx-auto text-base-content px-5 py-10 sm:p-14">
                 <aside>
                     <img src="/Shajid-International-Logo-dark.svg" alt="Shajid International" className="w-full max-w-44 mb-5" />
@@ -39,7 +39,7 @@ export default function Footer() {
                 </nav>
 
             </footer>
-            <footer className="footer sm:footer-horizontal footer-center bg-base-300 text-base-content p-4">
+            <footer className="footer sm:footer-horizontal footer-center bg-black  text-base-content p-4">
                 <aside>
                     <p className="text-gray-500"><span className="text-base-content">Copyright © {new Date().getFullYear()} </span>- All right reserved by <span className="text-base-content">Shajid International.</span> Developed by <a className="link text-base-content" href="https://www.fiverr.com/ahsanulazim6" target="_blank">Ahsanul Azim Plabon</a></p>
                 </aside>
