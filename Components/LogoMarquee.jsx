@@ -45,7 +45,7 @@ export default function LogoMarquee() {
                         max: 464,
                         min: 0
                     },
-                    items: 1,
+                    items: 2,
                     partialVisibilityGutter: 30
                 },
                 tablet: {
