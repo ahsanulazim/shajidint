@@ -1,7 +1,7 @@
 export default function BentoGrid() {
     return (
         <>
-            <div className="grid grid-cols-1 grid-rows-14 sm:grid-cols-2 sm:grid-rows-8 lg:grid-cols-3 lg:grid-rows-5 2xl:grid-cols-4 2xl:grid-rows-4 text-left gap-5 mt-10">
+            <div className="grid grid-cols-1 grid-rows-13 sm:grid-cols-2 sm:grid-rows-8 lg:grid-cols-3 lg:grid-rows-5 2xl:grid-cols-4 2xl:grid-rows-4 text-left gap-5 mt-10">
                 <div className="p-5 rounded-md bg-neutral-900 border border-neutral-700 row-span-2 order-3 2xl:order-1">
                     <h2 className="font-bold text-lg">Tactical Gear</h2>
                     <p className="text-gray-400 text-sm">Field-tested armor, helmets, and protective wear for combat readiness.</p>
