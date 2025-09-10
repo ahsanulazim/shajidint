@@ -13,7 +13,7 @@ export default function ShowCase({ content, reverse }) {
                 <div>
                     <h3 className="font-bold text-success uppercase mb-2">{content.title}</h3>
                     <h2 className="text-4xl font-bold tracking-tight text-balance">{content.heading}</h2>
-                    <p className="py-6 text-pretty tracking-tight">
+                    <p className="py-6 text-pretty tracking-tight opacity-70">
                         {content.desc}
                     </p>
                     <button className="btn btn-success rounded-md">{content.btn1}</button>

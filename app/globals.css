@@ -10,6 +10,7 @@
   --breakpoint-1xl: 1440px;
   --color-main: #132549;
   --color-second: #1E3A8A;
+  --color-bgCustom: #f2f3ff;
 }
 
 body {

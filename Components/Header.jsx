@@ -8,7 +8,7 @@ export default function Header() {
 
     useEffect(() => {
         const handleScroll = () => {
-            setGlass(window.scrollY > 120);
+            setGlass(window.scrollY > 80);
         };
 
         window.addEventListener("scroll", handleScroll);
