@@ -2,7 +2,7 @@ import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import Footer from "@/Components/Footer";
 import Header from "@/Components/Header";
-
+import MyContext from "@/context/MyContext";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -21,12 +21,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light">
-      <body
-        className={`${dmSans.variable} font-mono antialiased`}
-      >
-        <Header />
-        {children}
-        <Footer />
+      <body className={`${dmSans.variable} font-mono antialiased`}>
+        <MyContext>
+          <Header />
+          {children}
+          <Footer />
+        </MyContext>
       </body>
     </html>
   );
