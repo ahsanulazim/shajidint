@@ -1,15 +1,15 @@
-"use client";
+'use client'
 
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from 'next/navigation'
 import { FaRegEnvelope } from "react-icons/fa6";
 import { IoKeyOutline } from "react-icons/io5";
 
-export default function login() {
-  const router = useRouter();
+export default function Login() {
+  const router = useRouter()
 
   function handleLogin(e) {
     e.preventDefault();
-    router.push("/dashboard");
+    redirect("/dashboard");
   }
 
   return (

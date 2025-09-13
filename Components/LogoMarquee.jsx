@@ -1,4 +1,5 @@
 'use client'
+import Image from "next/image";
 import Carousel from "react-multi-carousel";
 
 export default function LogoMarquee() {
@@ -68,7 +69,7 @@ export default function LogoMarquee() {
         >
             {logos.map(logo => (
                 <div key={logo.id} className="flex items-center justify-center grayscale hover:grayscale-0 transition duration-300">
-                    <img src={logo.src} alt={logo.alt} className="h-20" />
+                    <Image width={80} height={80} src={logo.src} alt={logo.alt} className="h-20" />
                 </div>
             ))}
         </Carousel>

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function ShowCase({ content, reverse }) {
 
 
@@ -5,7 +7,7 @@ export default function ShowCase({ content, reverse }) {
     return (
         <div className="hero">
             <div className={`hero-content max-w-none p-0 flex-col justify-between ${reverse ? "lg:flex-row-reverse mt-10" : "lg:flex-row"} gap-15`}>
-                <img
+                <Image width={576} height={448}
                     src={content.img}
                     className="rounded-lg w-full lg:max-w-md xl:max-w-xl"
                     alt={content.title}

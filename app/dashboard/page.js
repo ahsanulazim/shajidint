@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { RiLayout2Fill } from "react-icons/ri";
 
 export default function dashboard() {
@@ -26,7 +27,7 @@ export default function dashboard() {
               </label>
             </div>
             <div className="mx-2 flex-1 px-2">
-              <img src="/Shajid-International-Logo.svg" alt="Shajid International Logo" className="w-full max-w-28 md:max-w-32" />
+              <Image src="/Shajid-International-Logo.svg" alt="Shajid International Logo" width={128} height={34} className="w-full max-w-28 md:max-w-32" />
             </div>
             <div className="hidden flex-none lg:block">
               <ul className="menu menu-horizontal">

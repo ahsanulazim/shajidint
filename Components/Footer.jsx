@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { FaEnvelope, FaLocationDot, FaPhone } from "react-icons/fa6";
 
@@ -16,7 +17,7 @@ export default function Footer() {
         <div className="bg-base-300" data-theme="dark">
             <footer className="footer sm:footer-horizontal grid-rows-2 lg:grid-rows-1 max-w-[1440px] mx-auto text-base-content px-5 py-10 sm:p-14">
                 <aside>
-                    <img src="/Shajid-International-Logo-dark.svg" alt="Shajid International" className="w-full max-w-44 mb-5" />
+                    <Image width={176} height={46} src="/Shajid-International-Logo-dark.svg" alt="Shajid International" className="w-full max-w-44 mb-5" />
                     <p className="max-w-96">Shajid International
                         With more than 7 years of national and global experience. Shajid International is continuing to serve businesses around the globe.</p>
 

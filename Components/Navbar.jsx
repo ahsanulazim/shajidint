@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Navbar({ glass }) {
@@ -48,7 +49,7 @@ export default function Navbar({ glass }) {
 
                     <div className="navbar-start">
                         <Link href="/">
-                            <img src="/Shajid-International-Logo-dark.svg" alt="Shajid International Logo" className="w-full max-w-28 md:max-w-32" />
+                            <Image width={128} height={34} src="/Shajid-International-Logo-dark.svg" alt="Shajid International Logo" className="w-full max-w-28 md:max-w-32" />
 
                         </Link>
                     </div>

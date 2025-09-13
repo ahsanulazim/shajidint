@@ -3,6 +3,7 @@
 import Carousel from "react-multi-carousel";
 import 'react-multi-carousel/lib/styles.css';
 import "./HeroCarousel.css"
+import Image from "next/image";
 
 export default function HeroCarousel() {
 
@@ -55,7 +56,7 @@ export default function HeroCarousel() {
       >
         {images.map((image) => (
           <div className="relative h-full m-auto w-full">
-            <img src={image.src} alt={image.title} key={image.id} className=" h-full w-full object-cover" />
+            <Image width={1440} height={455} src={image.src} alt={image.title} key={image.id} className=" h-full w-full object-cover" />
             <div className="absolute bottom-5 left-5 text-white p-3 rounded-md max-w-xs">
               <h3 className="text-2xl tracking-tight">{image.title}</h3>
               <p className="text-gray-400">{image.des}</p>
