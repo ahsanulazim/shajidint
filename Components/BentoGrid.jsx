@@ -43,7 +43,7 @@ export default function BentoGrid() {
                         <p className="text-gray-400 text-sm">Durable tools and kits built for harsh environments and rapid deployment.</p>
                     </div>
                     <img src="/Grid/field.webp" loading="lazy" alt="Field-Ready Equipment" className="sm:hidden lg:block" />
-                    <img src="/Grid/equipments.webp" loading="lazy" alt="Field-Ready Equipment" className="hidden sm:block lg:hidden" />
+                    <img src="/Grid/equipments.avif" loading="lazy" alt="Field-Ready Equipment" className="hidden sm:block lg:hidden" />
                 </div>
                 <div className="rounded-md flex flex-col justify-between bg-neutral-900 border border-neutral-700 sm:col-span-2 order-8 sm:order-6 lg:order-8 overflow-clip">
                     <div className="p-5">
