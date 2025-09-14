@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
                 <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col">
                     {/* Navbar */}
-                    <div className="navbar bg-base-300 w-full">
+                    <header className="navbar w-full">
                         <div className="flex-none lg:hidden">
                             <label
                                 htmlFor="my-drawer-3"
@@ -116,7 +116,7 @@ export default function RootLayout({ children }) {
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </header>
                     {/* Page content here */}
                     <main className="p-5 bg-[#F1F4F6] min-h-dvh">
                         {children}
