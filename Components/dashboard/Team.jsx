@@ -1,3 +1,7 @@
+'use client'
+
+import { useRef } from "react";
+import Modal from "./Modal";
 import TeamTable from "./TeamTable";
 
 export default function Team() {
@@ -9,8 +13,15 @@ export default function Team() {
         { id: 4, name: "Steve Rogers", job: "Developer", role: "Employee" },
     ];
 
+    const deleteUser = useRef();
+
+    const handleUserRemove = () => {
+        deleteUser.current.showModal();
+    }
+
     return (
         <>
+            <Modal ref={deleteUser} />
             <div className="overflow-x-auto bg-white shadow-md rounded-lg p-5 mt-5">
                 <table className="table">
                     {/* head */}
@@ -25,7 +36,7 @@ export default function Team() {
                     </thead>
                     <tbody>
                         {employees.map(employee => (
-                            <TeamTable key={employee.id} employee={employee} />))}
+                            <TeamTable key={employee.id} employee={employee} btn={handleUserRemove} />))}
                     </tbody>
                 </table>
             </div>

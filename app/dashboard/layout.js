@@ -6,6 +6,7 @@ import {
     FaCircleQuestion,
     FaFileZipper,
     FaGear,
+    FaUser,
     FaUserGroup,
 } from "react-icons/fa6";
 import { IoChatbubbles } from "react-icons/io5";
@@ -18,7 +19,7 @@ export default function RootLayout({ children }) {
                 <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col">
                     {/* Navbar */}
-                    <header className="navbar w-full">
+                    <header className="navbar w-full border-b border-b-gray-300">
                         <div className="flex-none lg:hidden">
                             <label
                                 htmlFor="my-drawer-3"
@@ -102,13 +103,13 @@ export default function RootLayout({ children }) {
                                     className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
                                 >
                                     <li>
-                                        <a className="justify-between">
+                                        <Link href="/dashboard/profile" className="justify-between">
                                             Profile
                                             <span className="badge">New</span>
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a>Settings</a>
+                                        <Link href="/dashboard/settings">Settings</Link>
                                     </li>
                                     <li>
                                         <a>Logout</a>
@@ -122,7 +123,7 @@ export default function RootLayout({ children }) {
                         {children}
                     </main>
                 </div>
-                <aside className="drawer-side">
+                <aside className="drawer-side border-r border-r-gray-300">
                     <label
                         htmlFor="my-drawer-3"
                         aria-label="close sidebar"
@@ -152,9 +153,14 @@ export default function RootLayout({ children }) {
                         </li>
                         <li className="menu-title">General</li>
                         <li>
-                            <a>
+                            <Link href="/dashboard/profile">
+                                <FaUser /> Profile
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/dashboard/settings">
                                 <FaGear /> Settings
-                            </a>
+                            </Link>
                         </li>
                         <li>
                             <a>
