@@ -1,8 +1,8 @@
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
-import Footer from "@/Components/Footer";
 import Header from "@/Components/Header";
 import MyContext from "@/context/MyContext";
+import FooterWrapper from "@/Components/FooterWrapper";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
         <MyContext>
           <Header />
           {children}
-          <Footer />
+          <FooterWrapper />
         </MyContext>
       </body>
     </html>

@@ -58,8 +58,8 @@ export default function RootLayout({ children }) {
                                     className="btn btn-ghost btn-circle"
                                 >
                                     <div className="indicator">
-                                        <FaBell />
-                                        <span className="badge badge-xs badge-primary indicator-item"></span>
+                                        <FaBell className="size-5" />
+                                        <span className="badge badge-xs badge-error indicator-item"></span>
                                     </div>
                                 </button>
                                 <div
@@ -119,7 +119,7 @@ export default function RootLayout({ children }) {
                         </div>
                     </header>
                     {/* Page content here */}
-                    <main className="p-5 bg-[#F1F4F6] min-h-dvh">
+                    <main className="p-5 bg-[#F1F4F6] grow">
                         {children}
                     </main>
                 </div>

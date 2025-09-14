@@ -23,7 +23,7 @@ export default function Team() {
         <>
             <Modal ref={deleteUser} />
             <div className="overflow-x-auto bg-white shadow-md rounded-lg p-5 mt-5">
-                <table className="table">
+                <table className="table table-xs md:table-md">
                     {/* head */}
                     <thead>
                         <tr>

@@ -10,9 +10,13 @@ export default function MyContext({ children }) {
 
   const path = usePathname();
   const [navbar, setNavbar] = useState(true);
+  const [footer, setFooter] = useState(true);
+
 
   useEffect(() => {
-    setNavbar(!path.startsWith("/dashboard"))
+    const isDashboard = path.startsWith("/dashboard");
+    setNavbar(!isDashboard);
+    setFooter(!isDashboard);
 
   }, [path]);
 

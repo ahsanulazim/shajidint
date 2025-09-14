@@ -23,7 +23,7 @@ export default function inbox() {
                 <p className="text-gray-400 text-sm sm:text-md tracking-tighter">See All massages and entries</p>
             </div>
             <div className="overflow-x-auto  bg-white shadow-md rounded-lg p-5 mt-5">
-                <table className="table">
+                <table className="table table-xs md:table-md">
                     {/* head */}
                     <thead>
                         <tr>
