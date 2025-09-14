@@ -14,7 +14,7 @@ export default function project() {
                         </ul>
                     </div>
                     <h1 className="font-medium text-2xl sm:text-4xl tracking-tighter">Projects</h1>
-                    <p className="text-gray-400 text-sm sm:text-md tracking-tighter">Add, Edit & View Projects you're working on</p>
+                    <p className="text-gray-400 text-sm sm:text-md tracking-tighter">Add, Edit & View Projects you&apos;re working on</p>
                 </div>
                 <button className="btn rounded-md btn-neutral hidden sm:inline-flex"><FaPlus /> Add Project</button>
                 <div className="fab sm:hidden absolute z-10 bottom-5 right-5">
