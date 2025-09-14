@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRef } from "react";
 import { FaEye, FaPenToSquare, FaTrashCan } from "react-icons/fa6";
 
-export default function inbox() {
+export default function Inbox() {
 
     const entries = [
         { id: 1, name: "MD Aminul Islam", date: "January 10, 2025", email: 'aminul@shajidint@gmail.com' },
