@@ -1,4 +1,8 @@
+'use client'
+
+import ModalInbox from "@/Components/dashboard/ModalInbox";
 import Link from "next/link";
+import { useRef } from "react";
 import { FaEye, FaPenToSquare, FaTrashCan } from "react-icons/fa6";
 
 export default function inbox() {
@@ -10,8 +14,15 @@ export default function inbox() {
 
     ];
 
+    const deleteMsg = useRef();
+
+    const handleMsgDel = () => {
+        deleteMsg.current.showModal();
+    }
+
     return (
         <>
+            <ModalInbox ref={deleteMsg} />
             <div>
                 <div className="breadcrumbs text-sm">
                     <ul>
@@ -44,9 +55,9 @@ export default function inbox() {
                                 <td>{entry.date}</td>
                                 <td>
                                     <div className="flex gap-2">
-                                        <button><FaEye className="text-gray-400 hover:text-success" /></button>
-                                        <button><FaPenToSquare className="text-gray-400 hover:text-info" /></button>
-                                        <button><FaTrashCan className="text-gray-400 hover:text-error" /></button>
+                                        <button className="btn btn-success btn-circle btn-sm md:btn-md"><FaEye /></button>
+                                        <button className="btn btn-info btn-circle btn-sm md:btn-md"><FaPenToSquare /></button>
+                                        <button className="btn btn-error btn-circle btn-sm md:btn-md" onClick={handleMsgDel}><FaTrashCan /></button>
                                     </div>
                                 </td>
                             </tr>))}

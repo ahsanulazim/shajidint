@@ -1,6 +1,6 @@
 import { FaTriangleExclamation } from "react-icons/fa6";
 
-export default function Modal({ ref }) {
+export default function ModalInbox({ ref }) {
     return (
         <>
             <dialog ref={ref} id="my_modal_1" className="modal">
@@ -11,13 +11,13 @@ export default function Modal({ ref }) {
                         </div>
                     </div>
 
-                    <p className="py-4 text-center text-balance">You are going to remove him. Are you sure?</p>
+                    <p className="py-4 text-center text-balance">You are going to delete the massage! Are you sure?</p>
                     <div className="modal-action justify-center gap-x-8">
                         <form method="dialog">
                             {/* if there is a button in form, it will close the modal */}
-                            <button className="btn rounded-md">No, Keep Him</button>
+                            <button className="btn rounded-md">No, Keep It</button>
                         </form>
-                        <button className="btn btn-error rounded-md">Yes, Remove Him</button>
+                        <button className="btn btn-error rounded-md">Yes, Delete It</button>
                     </div>
                 </div>
             </dialog>
