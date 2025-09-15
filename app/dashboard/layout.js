@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
 import {
     FaArrowRightToBracket,
     FaBell,
@@ -13,6 +14,9 @@ import { IoChatbubbles } from "react-icons/io5";
 import { RiLayout2Fill } from "react-icons/ri";
 
 export default function RootLayout({ children }) {
+
+    const { user, handleLogout } = useContext(data);
+
     return (
         <>
             <div className="drawer lg:drawer-open">
@@ -168,9 +172,9 @@ export default function RootLayout({ children }) {
                             </a>
                         </li>
                         <li>
-                            <a>
+                            <button onClick={() => { }}>
                                 <FaArrowRightToBracket /> Logout
-                            </a>
+                            </button>
                         </li>
                     </ul>
                 </aside>

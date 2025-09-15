@@ -5,10 +5,16 @@ import { FaRegEnvelope } from "react-icons/fa6";
 import { IoKeyOutline } from "react-icons/io5";
 
 export default function Login() {
+  //auth
+
+
   const router = useRouter()
 
   function handleLogin(e) {
     e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
     redirect("/dashboard");
   }
 
@@ -29,13 +35,14 @@ export default function Login() {
               required
               placeholder="Email"
               autoComplete="email"
+              name="email"
             />
           </label>
 
           <label className="label">Password</label>
           <label className="input">
             <IoKeyOutline className="opacity-50" />
-            <input type="password" required placeholder="Password" />
+            <input type="password" required placeholder="Password" name='password' />
           </label>
 
           <button type="submit" className="btn btn-success mt-4 rounded-md">
