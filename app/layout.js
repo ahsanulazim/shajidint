@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/Components/Header";
 import MyContext from "@/context/MyContext";
 import FooterWrapper from "@/Components/FooterWrapper";
+import { Bounce, ToastContainer } from "react-toastify";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -23,6 +24,19 @@ export default function RootLayout({ children }) {
     <html lang="en" data-theme="light">
       <body className={`${dmSans.variable} font-mono antialiased`}>
         <MyContext>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={false}
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            transition={Bounce}
+          />
           <Header />
           {children}
           <FooterWrapper />
