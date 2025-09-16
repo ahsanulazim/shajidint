@@ -1,3 +1,4 @@
+import Contact from "@/Components/Contact";
 import Hero from "@/Components/Hero";
 import HeroCarousel from "@/Components/HeroCarousel";
 import LogoMarquee from "@/Components/LogoMarquee";
@@ -17,6 +18,7 @@ export default function Home() {
         </section>
         <Supply />
         <Services />
+        <Contact />
       </main>
     </>
   );
