@@ -5,7 +5,7 @@ export default function page() {
   return (
     <>
       <Breadcrumbs title="Profile" />
-      <div>
+      <div className="mb-5">
         <h1 className="font-medium text-2xl sm:text-4xl tracking-tighter">
           Profile
         </h1>
