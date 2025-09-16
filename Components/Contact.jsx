@@ -2,7 +2,7 @@ import ContactFrom from "./ContactFrom";
 
 export default function Contact() {
     return (
-        <section className="max-w-[1440px] mx-auto p-5 lg:px-10 lg:py-20 flex flex-col md:items-center md:flex-row gap-5">
+        <section className="max-w-[1440px] mx-auto p-5 md:px-10 md:py-20 flex flex-col md:items-center md:flex-row gap-5">
             <div>
                 <h2 className="font-bold text-4xl lg:text-5xl tracking-tighter mb-5 text-balance">Ready to take your marketing to the next level?</h2>
                 <p className="lg:text-lg/8 font-bold">Get a look at:</p>
