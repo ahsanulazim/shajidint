@@ -57,7 +57,7 @@ export default function RootLayout({ children }) {
               <div className="mx-2 flex-1 px-2">
                 <Link href="/">
                   <Image
-                    src="/Shajid-International-Logo.svg"
+                    src="/shajidint.svg"
                     alt="Shajid International Logo"
                     width={128}
                     height={34}
