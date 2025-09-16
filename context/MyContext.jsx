@@ -69,7 +69,7 @@ export default function MyContext({ children }) {
         // ...
       })
       .catch((error) => {
-        toast.error("Login Failed! Please try again.");
+        toast.error("Wrong Email/Password");
       });
   }
 

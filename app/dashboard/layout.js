@@ -116,19 +116,28 @@ export default function RootLayout({ children }) {
                     tabIndex={0}
                     className="menu dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
                   >
+                    <li className="menu-title">
+                      {user ? (
+                        `Hi, ${user?.displayName.split(" ")[0]}`
+                      ) : (
+                        <div className="skeleton h-4 w-full"></div>
+                      )}
+                    </li>
                     <li>
-                      <Link
-                        href="/dashboard/profile"
-                        className="justify-between"
-                      >
-                        Profile
+                      <Link href="/dashboard/profile">
+                        <FaUser /> Profile
                       </Link>
                     </li>
                     <li>
-                      <Link href="/dashboard/settings">Settings</Link>
+                      <Link href="/dashboard/settings">
+                        <FaGear />
+                        Settings
+                      </Link>
                     </li>
                     <li>
-                      <button onClick={logout}>Logout</button>
+                      <button onClick={logout}>
+                        <FaArrowRightToBracket /> Logout
+                      </button>
                     </li>
                   </ul>
                 </div>
