@@ -1,6 +1,7 @@
 "use client";
 
 import ProtectedRoute from "@/Components/dashboard/ProtectedRoute";
+import Skeleton from "@/Components/dashboard/Skeleton";
 import { NavContext } from "@/context/MyContext";
 import Image from "next/image";
 import Link from "next/link";
@@ -120,7 +121,7 @@ export default function RootLayout({ children }) {
                       {user ? (
                         `Hi, ${user?.displayName.split(" ")[0]}`
                       ) : (
-                        <div className="skeleton h-4 w-full"></div>
+                        <Skeleton />
                       )}
                     </li>
                     <li>
