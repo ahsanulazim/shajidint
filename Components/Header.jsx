@@ -6,7 +6,7 @@ import { NavContext } from "@/context/MyContext";
 
 export default function Header() {
 
-    const {navbar} = useContext(NavContext)
+    const {user, navbar} = useContext(NavContext)
     const [glass, setGlass] = useState(false);
     const pathname = usePathname();
 
@@ -29,7 +29,7 @@ export default function Header() {
 
     return (
         <>
-            {navbar&&<Navbar glass={glass} />}
+            {navbar&&<Navbar glass={glass} user={user}/>}
         </>
     )
 }
