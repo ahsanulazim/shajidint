@@ -49,7 +49,7 @@ export default function Navbar({ glass, user }) {
 
                     <div className="navbar-start">
                         <Link href="/">
-                            <Image width={128} height={34} src="/Shajid-International-Logo-dark.svg" alt="Shajid International Logo" className="w-full max-w-28 md:max-w-32" />
+                            <Image width={128} height={34} src="/shajidintDark.svg" alt="Shajid International Logo" className="w-full max-w-28 md:max-w-32" />
 
                         </Link>
                     </div>

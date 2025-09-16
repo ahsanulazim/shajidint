@@ -1,20 +1,22 @@
 "use client";
 import { useContext, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { NavContext } from "@/context/MyContext";
 import Loader from "../Loader";
 
 export default function ProtectedRoute({ children }) {
-  const { user } = useContext(NavContext);
+  const { user, loading } = useContext(NavContext);
   const router = useRouter();
+  const path = usePathname();
 
   useEffect(() => {
-    if (!user) {
+    if (!loading && !user) {
       router.push("/login");
     }
-  }, [user]);
+  }, [user, loading, path]);
 
-  if (!user) return <Loader/>; // Prevent flash of protected content
+  if (loading) return <Loader/>; // Prevent flash of protected content
+  if (!user) return null;
 
   return <>{children}</>;
 }

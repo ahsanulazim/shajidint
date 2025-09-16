@@ -26,6 +26,8 @@ export default function MyContext({ children }) {
 
   // Firebase Auth
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
 
   // Monitor auth state
   useEffect(() => {
@@ -47,10 +49,8 @@ export default function MyContext({ children }) {
         // User is signed out
         // ...
         setUser(null);
-        if (path.startsWith("/dashboard")) {
-          router.push("/");
-        }
       }
+       setLoading(false);
     });
     return () => observer();
   }, [])
@@ -86,7 +86,7 @@ export default function MyContext({ children }) {
   }
 
 
-  const data = { navbar, footer, user, handleLogin, handleLogout };
+  const data = { navbar, footer, user, handleLogin, handleLogout, loading };
 
   return (
     <NavContext value={data}>
