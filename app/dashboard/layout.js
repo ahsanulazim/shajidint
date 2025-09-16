@@ -29,9 +29,9 @@ export default function RootLayout({ children }) {
       <ProtectedRoute>
         <div className="drawer lg:drawer-open">
           <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
-          <div className="drawer-content flex flex-col">
+          <div className="drawer-content flex flex-col bg-[#F1F4F6]">
             {/* Navbar */}
-            <header className="navbar w-full border-b border-b-gray-300">
+            <header className="navbar bg-white w-full border-b border-b-gray-300">
               <div className="flex-none lg:hidden">
                 <label
                   htmlFor="my-drawer-3"
@@ -135,7 +135,7 @@ export default function RootLayout({ children }) {
               </div>
             </header>
             {/* Page content here */}
-            <main className="p-5 bg-[#F1F4F6] grow">{children}</main>
+            <main className="p-5">{children}</main>
           </div>
           <aside className="drawer-side border-r border-r-gray-300">
             <label

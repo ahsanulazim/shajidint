@@ -48,7 +48,7 @@ export default function MyContext({ children }) {
         // ...
         setUser(null);
         if (path.startsWith("/dashboard")) {
-          router.push("/login");
+          router.push("/");
         }
       }
     });
@@ -58,19 +58,19 @@ export default function MyContext({ children }) {
 
   //Login handler
 
-  const handleLogin = (email,password) => {
-  signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    setUser(user);
-    toast.success("Login Successful!");
-    router.push("/dashboard");
-    // ...
-  })
-  .catch((error) => {
-    toast.error("Login Failed! Please try again.");
-  });
+  const handleLogin = (email, password) => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        setUser(user);
+        toast.success("Login Successful!");
+        router.push("/dashboard");
+        // ...
+      })
+      .catch((error) => {
+        toast.error("Login Failed! Please try again.");
+      });
   }
 
   //Logout handler

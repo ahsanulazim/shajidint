@@ -1,5 +1,6 @@
 'use client'
 
+import Breadcrumbs from "@/Components/dashboard/Breadcrumbs";
 import ModalInbox from "@/Components/dashboard/ModalInbox";
 import Link from "next/link";
 import { useRef } from "react";
@@ -23,13 +24,9 @@ export default function Inbox() {
     return (
         <>
             <ModalInbox ref={deleteMsg} />
+            <Breadcrumbs title="Inbox" />
             <div>
-                <div className="breadcrumbs text-sm">
-                    <ul>
-                        <li><Link href="/dashboard">Dashboard</Link></li>
-                        <li>Inbox</li>
-                    </ul>
-                </div>
+
                 <h1 className="font-medium text-2xl sm:text-4xl tracking-tighter">Inbox</h1>
                 <p className="text-gray-400 text-sm sm:text-md tracking-tighter">See All massages and entries</p>
             </div>

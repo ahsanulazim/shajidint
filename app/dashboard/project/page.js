@@ -1,3 +1,4 @@
+import Breadcrumbs from "@/Components/dashboard/Breadcrumbs";
 import ProjectCard from "@/Components/dashboard/ProjectCard";
 import Link from "next/link";
 import { FaPlus } from "react-icons/fa6";
@@ -5,12 +6,7 @@ import { FaPlus } from "react-icons/fa6";
 export default function project() {
     return (
         <>
-            <div className="breadcrumbs text-sm">
-                <ul>
-                    <li><Link href="/dashboard">Dashboard</Link></li>
-                    <li>Project</li>
-                </ul>
-            </div>
+            <Breadcrumbs title="Projects" />
             <div className="flex items-center justify-between mb-10 gap-5">
                 <div>
 

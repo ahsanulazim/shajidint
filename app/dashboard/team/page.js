@@ -1,16 +1,11 @@
+import Breadcrumbs from "@/Components/dashboard/Breadcrumbs";
 import Team from "@/Components/dashboard/Team";
-import Link from "next/link";
 import { FaPlus } from "react-icons/fa6";
 
 export default function page() {
     return (
         <>
-            <div className="breadcrumbs text-sm">
-                <ul>
-                    <li><Link href="/dashboard">Dashboard</Link></li>
-                    <li>Team</li>
-                </ul>
-            </div>
+            <Breadcrumbs title="Team" />
             <div className="flex items-center justify-between mb-10 gap-5">
                 <div>
                     <h1 className="font-medium text-2xl sm:text-4xl tracking-tighter">Team</h1>
