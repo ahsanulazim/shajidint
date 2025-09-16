@@ -2,13 +2,10 @@
 
 import Loader from "@/Components/Loader";
 import { NavContext } from "@/context/MyContext";
-import auth from "@/Firebase/firebase.config";
-import { fetchSignInMethodsForEmail } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { FaRegEnvelope } from "react-icons/fa6";
 import { IoKeyOutline } from "react-icons/io5";
-import { toast } from "react-toastify";
 
 export default function Login() {
   const { user, handleLogin } = useContext(NavContext);
@@ -47,38 +44,8 @@ export default function Login() {
     setErrors((prev) => ({ ...prev, password: validatePassword(value) }));
   };
 
-  // Check if email exists in Firebase Auth
-
-  const checkEmailExists = async (email) => {
-    try {
-      const methods = await fetchSignInMethodsForEmail(auth, email);
-      return methods.length > 0;
-    } catch (error) {
-      return false;
-    }
-  };
-
-  //Login handler
-
-  const processLogin = async (e) => {
+  const processLogin = (e) => {
     e.preventDefault();
-
-    // Step 1: Sync validation
-    const emailError = validateEmail(email);
-    const passwordError = validatePassword(password);
-    if (emailError || passwordError) {
-      setErrors({ email: emailError, password: passwordError });
-      return;
-    }
-
-    // Step 2: Check if email exists
-    const exists = await checkEmailExists(email);
-    if (!exists) {
-      toast.error("Email not registered.");
-      return;
-    }
-
-    // Step 3: Proceed with login
     handleLogin(email, password);
   };
 

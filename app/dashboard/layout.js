@@ -54,13 +54,15 @@ export default function RootLayout({ children }) {
                 </label>
               </div>
               <div className="mx-2 flex-1 px-2">
-                <Image
-                  src="/Shajid-International-Logo.svg"
-                  alt="Shajid International Logo"
-                  width={128}
-                  height={34}
-                  className="w-full max-w-28 md:max-w-32"
-                />
+                <Link href="/">
+                  <Image
+                    src="/Shajid-International-Logo.svg"
+                    alt="Shajid International Logo"
+                    width={128}
+                    height={34}
+                    className="w-full max-w-28 md:max-w-32"
+                  />
+                </Link>
               </div>
               <div className="flex-none">
                 <div className="dropdown dropdown-end">
@@ -112,7 +114,7 @@ export default function RootLayout({ children }) {
                   </div>
                   <ul
                     tabIndex={0}
-                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                    className="menu dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
                   >
                     <li>
                       <Link
@@ -120,7 +122,6 @@ export default function RootLayout({ children }) {
                         className="justify-between"
                       >
                         Profile
-                        <span className="badge">New</span>
                       </Link>
                     </li>
                     <li>
