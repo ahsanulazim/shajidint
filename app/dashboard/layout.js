@@ -5,7 +5,7 @@ import Skeleton from "@/Components/dashboard/Skeleton";
 import { NavContext } from "@/context/MyContext";
 import Image from "next/image";
 import Link from "next/link";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   FaArrowRightToBracket,
   FaBell,
@@ -19,7 +19,22 @@ import { IoChatbubbles } from "react-icons/io5";
 import { RiLayout2Fill } from "react-icons/ri";
 
 export default function RootLayout({ children }) {
-  const { user, handleLogout } = useContext(NavContext);
+
+  const [currentUser, setCurrentUser] = useState(null)
+  const { user, handleLogout, serverUrl } = useContext(NavContext);
+  const email = user?.email;
+
+  //current user data from mongodb and backend
+
+  useEffect(() => {
+
+    if (!email) return;
+
+    fetch(`${serverUrl}/loginuser/${email}`)
+      .then(res => res.json())
+      .then(data => setCurrentUser(data))
+
+  }, [email])
 
   const logout = () => {
     handleLogout();
@@ -155,47 +170,99 @@ export default function RootLayout({ children }) {
             ></label>
             <ul className="menu bg-base-200 min-h-full w-72 p-4">
               <li className="menu-title">Overview</li>
-              <li>
-                <Link href="/dashboard">
-                  <RiLayout2Fill /> Dashboard
-                </Link>
-              </li>
-              <li>
-                <Link href="/dashboard/inbox">
-                  <IoChatbubbles /> Inbox
-                </Link>
-              </li>
-              <li>
-                <Link href="/dashboard/project">
-                  <FaFileZipper /> Projects
-                </Link>
-              </li>
-              <li>
-                <Link href="/dashboard/team">
-                  <FaUserGroup /> Team
-                </Link>
-              </li>
+
+              {/* Conditional Rendering */}
+
+              {currentUser?.role == "admin" ? <>
+                <li>
+                  <Link href="/dashboard">
+                    <RiLayout2Fill /> Dashboard
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/dashboard/inbox">
+                    <IoChatbubbles /> Inbox
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/dashboard/project">
+                    <FaFileZipper /> Projects
+                  </Link>
+                </li>
+
+                <li>
+                  <Link href="/dashboard/team">
+                    <FaUserGroup /> Team
+                  </Link>
+                </li> </> : <>
+                <li>
+
+                  <Skeleton />
+
+                </li>
+                <li>
+
+                  <Skeleton />
+
+                </li>
+                <li>
+
+                  <Skeleton />
+
+                </li>
+                <li>
+
+                  <Skeleton />
+
+                </li>
+              </>}
+
+
+
               <li className="menu-title">General</li>
-              <li>
-                <Link href="/dashboard/profile">
-                  <FaUser /> Profile
-                </Link>
-              </li>
-              <li>
-                <Link href="/dashboard/settings">
-                  <FaGear /> Settings
-                </Link>
-              </li>
-              <li>
-                <a>
-                  <FaCircleQuestion /> Help
-                </a>
-              </li>
-              <li>
-                <button onClick={logout}>
-                  <FaArrowRightToBracket /> Logout
-                </button>
-              </li>
+              {currentUser ? <>
+                <li>
+                  <Link href="/dashboard/profile">
+                    <FaUser /> Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/dashboard/settings">
+                    <FaGear /> Settings
+                  </Link>
+                </li>
+                <li>
+                  <a>
+                    <FaCircleQuestion /> Help
+                  </a>
+                </li>
+                <li>
+                  <button onClick={handleLogout}><FaArrowRightToBracket />
+                    Logout
+                  </button>
+                </li></> : <>
+                <li>
+
+                  <Skeleton />
+
+                </li>
+                <li>
+
+                  <Skeleton />
+
+                </li>
+                <li>
+
+                  <Skeleton />
+
+                </li>
+                <li>
+
+                  <Skeleton />
+
+                </li>
+              </>
+              }
             </ul>
           </aside>
         </div>

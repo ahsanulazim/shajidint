@@ -10,7 +10,7 @@ export const NavContext = createContext()
 
 export default function MyContext({ children }) {
 
-
+  const serverUrl = "http://localhost:5000";
   const path = usePathname();
   const router = useRouter();
   const [navbar, setNavbar] = useState(true);
@@ -50,7 +50,7 @@ export default function MyContext({ children }) {
         // ...
         setUser(null);
       }
-       setLoading(false);
+      setLoading(false);
     });
     return () => observer();
   }, [])
@@ -86,7 +86,7 @@ export default function MyContext({ children }) {
   }
 
 
-  const data = { navbar, footer, user, handleLogin, handleLogout, loading };
+  const data = { navbar, footer, user, handleLogin, handleLogout, loading, serverUrl };
 
   return (
     <NavContext value={data}>

@@ -2,7 +2,7 @@
 
 import auth from "@/Firebase/firebase.config";
 import { updateProfile } from "firebase/auth";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   FaCheck,
   FaFacebook,
@@ -13,18 +13,45 @@ import {
 } from "react-icons/fa6";
 import { toast } from "react-toastify";
 import Skeleton from "./Skeleton";
+import { NavContext } from "@/context/MyContext";
 
 export default function ProfileCard() {
 
-  const user = auth.currentUser;
+  //Firebase user data from context
+  const { user, serverUrl } = useContext(NavContext);
+  const email = user?.email;
+  const [userData, setUserData] = useState(null)
+
+  //current user data from mongodb and backend
+
+  useEffect(() => {
+
+    if (!email) return;
+
+    fetch(`${serverUrl}/loginuser/${email}`)
+      .then(res => res.json())
+      .then(data => {
+        setUserData(data)
+      })
+
+  }, [user])
 
   const [profileData, setProfileData] = useState({
     name: user?.displayName,
     email: user?.email,
-    phone: "01612345678",
+    phone: "",
     designation: "Founder & CEO",
     profilePic: "/plabon.jpg", // Placeholder image URL
   });
+
+  useEffect(() => {
+    if (userData) {
+      setProfileData(prev => ({
+        ...prev,
+        phone: userData.phone,
+      }));
+    }
+  }, [userData]);
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -57,6 +84,16 @@ export default function ProfileCard() {
   //Cancel Changes
   const handleCancel = () => {
     setIsEditing(false);
+    if (userData) {
+      setProfileData(prev => ({
+        ...prev,
+        phone: userData.phone,
+        email: userData.email,
+        name: user?.displayName,
+        designation: "Founder & CEO", // or userData.designation if dynamic
+      }));
+    }
+
   }
 
   return (
