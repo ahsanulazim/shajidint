@@ -1,7 +1,5 @@
 "use client";
 import { NavContext } from "@/context/MyContext";
-import auth from "@/Firebase/firebase.config";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 
