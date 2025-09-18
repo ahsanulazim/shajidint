@@ -11,6 +11,7 @@ import {
   FaSquareXTwitter,
   FaXmark,
 } from "react-icons/fa6";
+import { MdOutlineCameraAlt } from "react-icons/md";
 import { toast } from "react-toastify";
 import Skeleton from "./Skeleton";
 import { NavContext } from "@/context/MyContext";
@@ -98,14 +99,54 @@ export default function ProfileCard() {
     }
   };
 
+  //Handle Image Upload
+  const handleProfile = (e) => {
+    e.preventDefault()
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("profilePic", file);
+
+    fetch(`${serverUrl}/Users/${user.email}`, {
+      method: "PUT",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          toast.success("Profile Picture Uploaded");
+          // UI তে সাথে সাথে দেখানোর জন্য লোকাল স্টেট আপডেট
+          setProfileData((prev) => ({
+            ...prev,
+            profilePic: data.profilePic,
+          }));
+        } else {
+          toast.error("Failed to add Profile Picture");
+        }
+      })
+      .catch(() => toast.error("Server error"));
+
+    ;
+  }
+
   return (
     <div className="md:flex md:items-center lg:max-w-3xl bg-white rounded-md overflow-clip shadow-sm">
-      <div className="rounded-md overflow-clip md:p-5 md:pr-0">
-        <img
+      <div className="rounded-md overflow-clip md:p-5 md:pr-0 relative w-full">
+        {profileData && profileData.profilePic ? <img
           className="w-full md:rounded-md"
-          src="/plabon.jpg"
-          alt="Ahsanul Azim Plabon"
-        />
+          src={profileData.profilePic}
+          alt={user?.displayName}
+        /> : <div className="avatar avatar-placeholder w-full">
+          <div className="bg-neutral text-neutral-content w-full rounded-md">
+            <span className="text-6xl sm:text-8xl">D</span>
+          </div>
+        </div>}
+        <form encType="multipart/form-data" className="absolute bottom-0 left-0 w-full bg-transparent md:p-5 md:pr-0" data-theme="dark">
+          <input type="file" id="profilePic" name="profilePic" accept="image/*" className="hidden" onChange={handleProfile} required />
+          <label htmlFor="profilePic" className="flex items-center justify-center gap-x-2 py-1.5 sm:py-2.5 tracking-tight cursor-pointer glass rounded-b-md"><MdOutlineCameraAlt className="text-lg" /> Upload Photo</label>
+        </form>
+
       </div>
       <fieldset className="fieldset p-5">
         <h1 className="text-2xl sm:text-3xl tracking-tighter md:whitespace-nowrap mb-5">
