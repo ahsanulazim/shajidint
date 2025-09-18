@@ -66,7 +66,7 @@ export default function MyContext({ children }) {
       setLoading(false);
     });
     return () => observer();
-  }, []);
+  }, [user]);
 
   //Login handler
 

@@ -5,7 +5,7 @@ import Skeleton from "@/Components/dashboard/Skeleton";
 import { NavContext } from "@/context/MyContext";
 import Image from "next/image";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import {
   FaArrowRightToBracket,
   FaBell,
