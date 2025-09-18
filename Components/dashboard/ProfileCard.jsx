@@ -137,7 +137,7 @@ export default function ProfileCard() {
               Phone
             </label>
             <input
-              type="phone"
+              type="tel"
               name="phone"
               className="input"
               onChange={handleInputChange}

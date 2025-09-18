@@ -19,22 +19,7 @@ import { IoChatbubbles } from "react-icons/io5";
 import { RiLayout2Fill } from "react-icons/ri";
 
 export default function RootLayout({ children }) {
-
-  const [currentUser, setCurrentUser] = useState(null)
-  const { user, handleLogout, serverUrl } = useContext(NavContext);
-  const email = user?.email;
-
-  //current user data from mongodb and backend
-
-  useEffect(() => {
-
-    if (!email) return;
-
-    fetch(`${serverUrl}/loginuser/${email}`)
-      .then(res => res.json())
-      .then(data => setCurrentUser(data))
-
-  }, [email])
+  const { user, currentUser, handleLogout } = useContext(NavContext);
 
   const logout = () => {
     handleLogout();
@@ -133,11 +118,9 @@ export default function RootLayout({ children }) {
                     className="menu dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
                   >
                     <li className="menu-title">
-                      {user ? (
-                        `Hi, ${user?.displayName.split(" ")[0]}`
-                      ) : (
-                        <Skeleton />
-                      )}
+                      {user
+                        ? `Hi, ${user?.displayName?.split(" ")[0]}`
+                        : "User"}
                     </li>
                     <li>
                       <Link href="/dashboard/profile">
@@ -173,96 +156,79 @@ export default function RootLayout({ children }) {
 
               {/* Conditional Rendering */}
 
-              {currentUser?.role == "admin" ? <>
-                <li>
-                  <Link href="/dashboard">
-                    <RiLayout2Fill /> Dashboard
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/dashboard/inbox">
-                    <IoChatbubbles /> Inbox
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/dashboard/project">
-                    <FaFileZipper /> Projects
-                  </Link>
-                </li>
-
-                <li>
-                  <Link href="/dashboard/team">
-                    <FaUserGroup /> Team
-                  </Link>
-                </li> </> : <>
-                <li>
-
-                  <Skeleton />
-
-                </li>
-                <li>
-
-                  <Skeleton />
-
-                </li>
-                <li>
-
-                  <Skeleton />
-
-                </li>
-                <li>
-
-                  <Skeleton />
-
-                </li>
-              </>}
-
-
+              {currentUser ? (
+                <>
+                  <li>
+                    <Link href="/dashboard">
+                      <RiLayout2Fill /> Dashboard
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/dashboard/inbox">
+                      <IoChatbubbles /> Inbox
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/dashboard/project">
+                      <FaFileZipper /> Projects
+                    </Link>
+                  </li>
+                  {currentUser.role == "Admin" && (
+                    <li>
+                      <Link href="/dashboard/team">
+                        <FaUserGroup /> Team
+                      </Link>
+                    </li>
+                  )}
+                </>
+              ) : (
+                <>
+                  {Array(4)
+                    .fill(null)
+                    .map((_, i) => (
+                      <li key={i}>
+                        <Skeleton className="my-2" />
+                      </li>
+                    ))}
+                </>
+              )}
 
               <li className="menu-title">General</li>
-              {currentUser ? <>
-                <li>
-                  <Link href="/dashboard/profile">
-                    <FaUser /> Profile
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/dashboard/settings">
-                    <FaGear /> Settings
-                  </Link>
-                </li>
-                <li>
-                  <a>
-                    <FaCircleQuestion /> Help
-                  </a>
-                </li>
-                <li>
-                  <button onClick={handleLogout}><FaArrowRightToBracket />
-                    Logout
-                  </button>
-                </li></> : <>
-                <li>
-
-                  <Skeleton />
-
-                </li>
-                <li>
-
-                  <Skeleton />
-
-                </li>
-                <li>
-
-                  <Skeleton />
-
-                </li>
-                <li>
-
-                  <Skeleton />
-
-                </li>
-              </>
-              }
+              {currentUser ? (
+                <>
+                  <li>
+                    <Link href="/dashboard/profile">
+                      <FaUser /> Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/dashboard/settings">
+                      <FaGear /> Settings
+                    </Link>
+                  </li>
+                  <li>
+                    <a>
+                      <FaCircleQuestion /> Help
+                    </a>
+                  </li>
+                  <li>
+                    <button onClick={handleLogout}>
+                      <FaArrowRightToBracket />
+                      Logout
+                    </button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  {Array(4)
+                    .fill(null)
+                    .map((_, i) => (
+                      <li key={i}>
+                        <Skeleton className="my-2" />
+                      </li>
+                    ))}
+                </>
+              )}
             </ul>
           </aside>
         </div>
