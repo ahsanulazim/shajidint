@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 export const NavContext = createContext();
 
 export default function MyContext({ children }) {
-  const serverUrl = `${process.env.NEXT_PUBLIC_API_BASE}`;
+  const serverUrl = process.env.NEXT_PUBLIC_API_BASE;
   const path = usePathname();
   const router = useRouter();
   const [navbar, setNavbar] = useState(true);
