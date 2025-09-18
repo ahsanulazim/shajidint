@@ -22,6 +22,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const validateEmail = (value) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -46,7 +47,8 @@ export default function Login() {
 
   const processLogin = (e) => {
     e.preventDefault();
-    handleLogin(email, password);
+    setLoading(true);
+    handleLogin(email, password, setLoading);
   };
 
   if (user) return <Loader />;
@@ -89,8 +91,19 @@ export default function Login() {
             <p className="text-red-500 text-sm">{errors.password}</p>
           )}
 
-          <button type="submit" className="btn btn-success mt-4 rounded-md">
-            Login
+          <button
+            type="submit"
+            className="btn btn-success mt-4 rounded-md"
+            disabled={loading ? true : false}
+          >
+            {loading ? (
+              <>
+                <span className="loading loading-spinner"></span>
+                loading
+              </>
+            ) : (
+              <>Login</>
+            )}
           </button>
         </form>
       </main>

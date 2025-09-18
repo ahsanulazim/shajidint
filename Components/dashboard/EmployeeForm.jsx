@@ -28,17 +28,18 @@ export default function EmployeeForm() {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          toast.success("New Employee Added Successfully");
           setLoading(false);
+          toast.success("New Employee Added Successfully");
+
           e.target.reset();
         } else {
-          toast.error("Failed to add employee");
           setLoading(false);
+          toast.error("Failed to add employee");
         }
       })
       .catch(() => {
-        toast.error("Server error");
         setLoading(false);
+        toast.error("Server error");
       });
   };
 
@@ -104,16 +105,20 @@ export default function EmployeeForm() {
           required
         />
 
-        {loading ? (
-          <button className="btn" disabled>
-            <span className="loading loading-spinner"></span>
-            loading
-          </button>
-        ) : (
-          <button type="submit" className="btn btn-neutral mt-4 rounded-md">
-            Register
-          </button>
-        )}
+        <button
+          type="submit"
+          className="btn btn-neutral mt-4 rounded-md"
+          disabled={loading ? true : false}
+        >
+          {loading ? (
+            <>
+              <span className="loading loading-spinner"></span>
+              loading
+            </>
+          ) : (
+            <>Register</>
+          )}
+        </button>
       </form>
     </>
   );

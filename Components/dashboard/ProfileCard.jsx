@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import auth from "@/Firebase/firebase.config";
 import { updateProfile } from "firebase/auth";
@@ -16,42 +16,26 @@ import Skeleton from "./Skeleton";
 import { NavContext } from "@/context/MyContext";
 
 export default function ProfileCard() {
-
   //Firebase user data from context
-  const { user, serverUrl } = useContext(NavContext);
-  const email = user?.email;
-  const [userData, setUserData] = useState(null)
-
-  //current user data from mongodb and backend
-
-  useEffect(() => {
-
-    if (!email) return;
-
-    fetch(`${serverUrl}/loginuser/${email}`)
-      .then(res => res.json())
-      .then(data => {
-        setUserData(data)
-      })
-
-  }, [user])
+  const { user, currentUser, serverUrl } = useContext(NavContext);
 
   const [profileData, setProfileData] = useState({
     name: user?.displayName,
     email: user?.email,
-    phone: "",
-    designation: "Founder & CEO",
+    phone: <Skeleton />,
+    designation: <Skeleton />,
     profilePic: "/plabon.jpg", // Placeholder image URL
   });
 
   useEffect(() => {
-    if (userData) {
-      setProfileData(prev => ({
+    if (currentUser) {
+      setProfileData((prev) => ({
         ...prev,
-        phone: userData.phone,
+        phone: currentUser.phone,
+        designation: currentUser.designation,
       }));
     }
-  }, [userData]);
+  }, [currentUser]);
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -64,37 +48,55 @@ export default function ProfileCard() {
   };
 
   // Function to handle saving changes
-  const handleSave = () => {
+  const handleSave = async () => {
     setIsEditing(false);
-    updateProfile(auth.currentUser, {
-      displayName: profileData.name,
-    })
-      .then(() => {
-        // Profile updated!
-        // ...
-        toast.success("Informations Updated");
-      })
-      .catch((error) => {
-        // An error occurred
-        // ...
-        toast.error("Cannot Update Information");
+    try {
+      // Update Firebase display name
+      await updateProfile(auth.currentUser, {
+        displayName: profileData.name,
+        email: profileData.email,
       });
+
+      // Update MongoDB via Express API
+      const response = await fetch(`${serverUrl}/users/${user.email}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: profileData.name,
+          phone: profileData.phone,
+          designation: profileData.designation,
+          email: profileData.email,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast.success("Information updated successfully");
+      } else {
+        toast.error(result.message || "MongoDB update failed");
+      }
+    } catch (error) {
+      console.error("Update error:", error);
+      toast.error("Something went wrong while saving");
+    }
   };
 
   //Cancel Changes
   const handleCancel = () => {
     setIsEditing(false);
-    if (userData) {
-      setProfileData(prev => ({
+    if (currentUser) {
+      setProfileData((prev) => ({
         ...prev,
-        phone: userData.phone,
-        email: userData.email,
+        designation: currentUser.phone,
+        phone: currentUser.phone,
+        email: currentUser.email,
         name: user?.displayName,
-        designation: "Founder & CEO", // or userData.designation if dynamic
       }));
     }
-
-  }
+  };
 
   return (
     <div className="md:flex md:items-center lg:max-w-3xl bg-white rounded-md overflow-clip shadow-sm">
@@ -175,7 +177,12 @@ export default function ProfileCard() {
                 <FaCheck />
                 Save
               </button>
-              <button className="btn rounded-md btn-error mt-5 flex-1" onClick={handleCancel}><FaXmark /> Cancel</button>
+              <button
+                className="btn rounded-md btn-error mt-5 flex-1"
+                onClick={handleCancel}
+              >
+                <FaXmark /> Cancel
+              </button>
             </div>
           </>
         ) : (
@@ -220,5 +227,5 @@ export default function ProfileCard() {
         )}
       </fieldset>
     </div>
-  )
+  );
 }

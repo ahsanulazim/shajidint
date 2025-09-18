@@ -70,17 +70,19 @@ export default function MyContext({ children }) {
 
   //Login handler
 
-  const handleLogin = (email, password) => {
+  const handleLogin = (email, password, setLoading) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
         setUser(user);
+        setLoading(false);
         toast.success("Login Successful!");
         router.push("/dashboard");
         // ...
       })
       .catch((error) => {
+        setLoading(false);
         toast.error("Wrong Email/Password");
       });
   };
