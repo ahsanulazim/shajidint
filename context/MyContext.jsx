@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useEffect, useState } from "react";
-import { redirect, usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -54,7 +54,10 @@ export default function MyContext({ children }) {
 
         fetch(`${serverUrl}/loginuser/${email}`)
           .then((res) => res.json())
-          .then((data) => setCurrentUser(data));
+          .then((data) => setCurrentUser(data))
+          .catch((err) => {
+            setCurrentUser(null);
+          });
 
         // ...
       } else {
@@ -66,7 +69,7 @@ export default function MyContext({ children }) {
       setLoading(false);
     });
     return () => observer();
-  }, [user]);
+  }, []);
 
   //Login handler
 
