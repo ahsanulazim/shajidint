@@ -111,18 +111,15 @@ export default function ProfileCard() {
 
       const res = await fetch(`${serverUrl}/users/${user.email}`, {
         method: "PUT",
-        headers: {
-          ...(await authHeader()),
-        },
-
         body: formData,
       });
+
       const data = await res.json();
       if (data.success) {
         toast.success("Profile picture uploaded");
         setProfileData(prev => ({
           ...prev,
-          proPic: data.user?.profilePic || prev.proPic,
+          proPic: data.profilePic || prev.proPic,
         }));
       } else {
         toast.error(data.message || "Failed to upload profile picture");
@@ -140,15 +137,20 @@ export default function ProfileCard() {
   return (
     <div className="md:flex md:items-center lg:max-w-3xl bg-white rounded-md overflow-clip shadow-sm">
       <div className="rounded-md overflow-clip md:p-5 md:pr-0 relative w-full">
-        {currentUser && currentUser.proPic ? <img
-          className="w-full md:rounded-md"
-          src={profileData.proPic}
-          alt={user?.displayName}
-        /> : <div className="avatar avatar-placeholder w-full">
-          <div className="bg-neutral text-neutral-content w-full rounded-md">
-            <span className="text-6xl sm:text-8xl">D</span>
+        {profileData.proPic ? (
+          <img
+            className="w-full md:rounded-md"
+            src={profileData.proPic}
+            alt={user?.displayName}
+          />
+        ) : (
+          <div className="avatar avatar-placeholder w-full">
+            <div className="bg-neutral text-neutral-content w-full rounded-md">
+              <span className="text-6xl sm:text-8xl">D</span>
+            </div>
           </div>
-        </div>}
+        )}
+
         <form encType="multipart/form-data" className="absolute bottom-0 left-0 w-full bg-transparent md:p-5 md:pr-0" data-theme="dark">
           <input type="file" id="profilePic" name="profilePic" accept="image/*" className="hidden" onChange={handleProfile} required />
           <label htmlFor="profilePic" className="flex items-center justify-center gap-x-2 py-1.5 sm:py-2.5 tracking-tight cursor-pointer glass rounded-b-md"><MdOutlineCameraAlt className="text-lg" /> Upload Photo</label>
