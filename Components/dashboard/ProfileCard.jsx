@@ -25,7 +25,7 @@ export default function ProfileCard() {
     email: user?.email,
     phone: <Skeleton />,
     designation: <Skeleton />,
-    proPic: currentUser?.proPic, // Placeholder image URL
+    proPic: currentUser?.profilePic, // Placeholder image URL
   });
 
   useEffect(() => {
@@ -100,35 +100,42 @@ export default function ProfileCard() {
   };
 
   //Handle Image Upload
-  const handleProfile = (e) => {
+  const handleProfile = async (e) => {
     e.preventDefault()
     const file = e.target.files?.[0];
     if (!file) return;
+    try {
 
-    const formData = new FormData();
-    formData.append("profilePic", file);
+      const formData = new FormData();
+      formData.append("profilePic", file);
 
-    fetch(`${serverUrl}/Users/${user.email}`, {
-      method: "PUT",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          toast.success("Profile Picture Uploaded");
-          // UI তে সাথে সাথে দেখানোর জন্য লোকাল স্টেট আপডেট
-          setProfileData((prev) => ({
-            ...prev,
-            proPic: data.profilePic,
-          }));
-        } else {
-          toast.error("Failed to add Profile Picture");
-        }
-      })
-      .catch(() => toast.error("Server error"));
+      const res = await fetch(`${serverUrl}/users/${user.email}`, {
+        method: "PUT",
+        headers: {
+          ...(await authHeader()),
+        },
 
-    ;
-  }
+        body: formData,
+      });
+      const data = await res.json();
+      if (data.success) {
+        toast.success("Profile picture uploaded");
+        setProfileData(prev => ({
+          ...prev,
+          proPic: data.user?.profilePic || prev.proPic,
+        }));
+      } else {
+        toast.error(data.message || "Failed to upload profile picture");
+      }
+    } catch (err) {
+      console.error("Upload error:", err);
+      toast.error("Server error");
+    } finally {
+      // reset the file input if needed
+      e.target.value = "";
+    }
+  };
+
 
   return (
     <div className="md:flex md:items-center lg:max-w-3xl bg-white rounded-md overflow-clip shadow-sm">
