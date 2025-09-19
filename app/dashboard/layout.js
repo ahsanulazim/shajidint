@@ -105,7 +105,7 @@ export default function RootLayout({ children }) {
                     className="btn btn-ghost btn-circle avatar"
                   >
                     <div className="w-10 rounded-full">
-                      {currentUser.profilePic ? <Image
+                      {currentUser && currentUser.profilePic ? <Image
                         width={40}
                         height={40}
                         alt={user?.displayName}
