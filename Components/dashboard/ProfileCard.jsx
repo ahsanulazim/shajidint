@@ -109,10 +109,11 @@ export default function ProfileCard() {
       const formData = new FormData();
       formData.append("profilePic", file);
 
-      const res = await fetch(`${serverUrl}/users/${user.email}`, {
+      const res = await fetch(`${serverUrl}/users/${user.email}/image`, {
         method: "PUT",
         body: formData,
       });
+
 
       const data = await res.json();
       if (data.success) {
