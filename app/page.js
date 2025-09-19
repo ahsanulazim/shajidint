@@ -10,11 +10,12 @@ export default function Home() {
     <>
       <main className="bg-bgCustom">
         <Hero />
-        <section className="hidden lg:block bg-black pb-15 px-5 lg:px-10">
-          <HeroCarousel />
-        </section>
+
         <section className="bg-neutral-900 py-10">
           <LogoMarquee />
+        </section>
+        <section className="hidden lg:block py-15 px-5 lg:px-10">
+          <HeroCarousel />
         </section>
         <Supply />
         <Services />

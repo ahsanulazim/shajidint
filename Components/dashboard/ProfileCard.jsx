@@ -25,7 +25,7 @@ export default function ProfileCard() {
     email: user?.email,
     phone: <Skeleton />,
     designation: <Skeleton />,
-    profilePic: "/plabon.jpg", // Placeholder image URL
+    proPic: currentUser?.proPic, // Placeholder image URL
   });
 
   useEffect(() => {
@@ -91,7 +91,7 @@ export default function ProfileCard() {
     if (currentUser) {
       setProfileData((prev) => ({
         ...prev,
-        designation: currentUser.phone,
+        designation: currentUser.designation,
         phone: currentUser.phone,
         email: currentUser.email,
         name: user?.displayName,
@@ -119,7 +119,7 @@ export default function ProfileCard() {
           // UI তে সাথে সাথে দেখানোর জন্য লোকাল স্টেট আপডেট
           setProfileData((prev) => ({
             ...prev,
-            profilePic: data.profilePic,
+            proPic: data.profilePic,
           }));
         } else {
           toast.error("Failed to add Profile Picture");
@@ -133,9 +133,9 @@ export default function ProfileCard() {
   return (
     <div className="md:flex md:items-center lg:max-w-3xl bg-white rounded-md overflow-clip shadow-sm">
       <div className="rounded-md overflow-clip md:p-5 md:pr-0 relative w-full">
-        {profileData && profileData.profilePic ? <img
+        {currentUser && currentUser.proPic ? <img
           className="w-full md:rounded-md"
-          src={profileData.profilePic}
+          src={profileData.proPic}
           alt={user?.displayName}
         /> : <div className="avatar avatar-placeholder w-full">
           <div className="bg-neutral text-neutral-content w-full rounded-md">
