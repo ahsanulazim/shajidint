@@ -101,11 +101,11 @@ export default function ProfileCard() {
 
   //Handle Image Upload
   const handleProfile = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const file = e.target.files?.[0];
     if (!file) return;
-    try {
 
+    try {
       const formData = new FormData();
       formData.append("profilePic", file);
 
@@ -114,14 +114,21 @@ export default function ProfileCard() {
         body: formData,
       });
 
-
       const data = await res.json();
+
       if (data.success) {
         toast.success("Profile picture uploaded");
+
+        // লোকাল state আপডেট
         setProfileData(prev => ({
           ...prev,
           proPic: data.profilePic || prev.proPic,
         }));
+
+        // context-এর currentUser-ও আপডেট করো
+        if (currentUser) {
+          currentUser.profilePic = data.profilePic;
+        }
       } else {
         toast.error(data.message || "Failed to upload profile picture");
       }
@@ -129,7 +136,6 @@ export default function ProfileCard() {
       console.error("Upload error:", err);
       toast.error("Server error");
     } finally {
-      // reset the file input if needed
       e.target.value = "";
     }
   };
@@ -138,16 +144,16 @@ export default function ProfileCard() {
   return (
     <div className="md:flex md:items-center lg:max-w-3xl bg-white rounded-md overflow-clip shadow-sm">
       <div className="rounded-md overflow-clip md:p-5 md:pr-0 relative w-full">
-        {profileData.proPic ? (
+        {currentUser?.profilePic || profileData.proPic ? (
           <img
             className="w-full md:rounded-md"
-            src={profileData.proPic}
-            alt={user?.displayName}
+            src={currentUser?.profilePic || profileData.proPic}
+            alt={user?.displayName || "Profile Picture"}
           />
         ) : (
           <div className="avatar avatar-placeholder w-full">
             <div className="bg-neutral text-neutral-content w-full rounded-md">
-              <span className="text-6xl sm:text-8xl">D</span>
+              <span className="text-6xl sm:text-8xl">{user?.displayName.slice(0, 1)}</span>
             </div>
           </div>
         )}
