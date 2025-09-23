@@ -2,6 +2,7 @@
 
 import Loader from "@/Components/Loader";
 import { NavContext } from "@/context/MyContext";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { FaRegEnvelope } from "react-icons/fa6";
@@ -105,7 +106,9 @@ export default function Login() {
               <>Login</>
             )}
           </button>
+          <Link href="/forgetpass" className="link link-primary text-center">Forgot Password?</Link>
         </form>
+
       </main>
     </>
   );
