@@ -105,17 +105,22 @@ export default function RootLayout({ children }) {
                     className="btn btn-ghost btn-circle avatar"
                   >
                     <div className="w-10 rounded-full">
-                      {currentUser && currentUser.profilePic ? <Image
-                        width={40}
-                        height={40}
-                        alt={user?.displayName}
-                        src={currentUser?.profilePic}
-                      /> : <div className="avatar avatar-placeholder">
-                        <div className="bg-neutral text-neutral-content w-10 rounded-full">
-                          <span className="text-xs">{user?.displayName.slice(0, 1)}</span>
+                      {currentUser && currentUser.profilePic ? (
+                        <Image
+                          width={40}
+                          height={40}
+                          alt={user?.displayName}
+                          src={currentUser.profilePic}
+                        />
+                      ) : (
+                        <div className="avatar avatar-placeholder">
+                          <div className="bg-neutral text-neutral-content w-10 rounded-full">
+                            <span className="text-xs">
+                              {user?.displayName.slice(0, 1)}
+                            </span>
+                          </div>
                         </div>
-                      </div>}
-
+                      )}
                     </div>
                   </div>
                   <ul
