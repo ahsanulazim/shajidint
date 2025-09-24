@@ -6,7 +6,7 @@ import { useParams } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { FaEnvelope, FaPhone, FaRegCalendarDays } from "react-icons/fa6";
 
-export default function page({}) {
+export default function Page() {
   const { massage } = useParams();
   const { serverUrl } = useContext(NavContext);
   const [query, setQuery] = useState(null);
