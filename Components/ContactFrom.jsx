@@ -1,20 +1,24 @@
 "use client";
 
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import ContactModal from "./ContactModal";
 import { NavContext } from "@/context/MyContext";
+import { toast } from "react-toastify";
 
 export default function ContactFrom() {
   const sendModal = useRef();
+  const [loading, setLoading] = useState(false);
   const { serverUrl } = useContext(NavContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     const name = e.target.name.value;
-    const company = e.target.company.value;
+    const company = e.target.company.value || "";
     const email = e.target.email.value;
-    const phone = e.target.phone.value || "";
+    const phone = e.target.phone.value;
     const query = e.target.query.value;
+
     fetch(`${serverUrl}/msg`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -23,6 +27,7 @@ export default function ContactFrom() {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
+          setLoading(false);
           sendModal.current.show();
           e.target.reset();
         } else {
@@ -31,6 +36,7 @@ export default function ContactFrom() {
         }
       })
       .catch(() => {
+        setLoading(false);
         toast.error("Server error");
       });
   };
@@ -93,8 +99,20 @@ export default function ContactFrom() {
             required
           />
         </label>
-        <button type="submit" className="btn btn-neutral !rounded-md">
-          Send
+
+        <button
+          type="submit"
+          className="btn btn-neutral !rounded-md"
+          disabled={loading ? true : false}
+        >
+          {loading ? (
+            <>
+              <span className="loading loading-spinner"></span>
+              loading
+            </>
+          ) : (
+            <>Send</>
+          )}
         </button>
       </form>
     </>
