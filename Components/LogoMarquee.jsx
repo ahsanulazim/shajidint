@@ -6,7 +6,7 @@ export default function LogoMarquee() {
 
     const logos = [
         { id: 0, src: '/enlistments/logo (1).png', alt: 'SKS' },
-        { id: 1, src: '/enlistments/logo (2).png', alt: 'CMTD' },
+        { id: 1, src: '/enlistments/logo (2).png', alt: 'BOF' },
         { id: 2, src: '/enlistments/logo (3).png', alt: 'BTRC' },
         { id: 3, src: '/enlistments/logo (4).png', alt: 'DGDP' },
         { id: 4, src: '/enlistments/logo (5).png', alt: 'MES' },
@@ -19,7 +19,7 @@ export default function LogoMarquee() {
             autoPlay={true}
             autoPlaySpeed={2000}
             centerMode={false}
-            className="max-w-[1440px] mx-auto"
+            className="w-full"
             containerClass="container-with-dots"
             dotListClass=""
             draggable
