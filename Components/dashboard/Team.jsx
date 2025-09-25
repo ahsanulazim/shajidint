@@ -55,7 +55,7 @@ export default function Team() {
           </Link>
         </div>
       </div>
-      <div className="overflow-x-auto bg-white shadow-md rounded-lg p-5 mt-5">
+      <div className="overflow-x-auto bg-base-200 shadow-md rounded-lg p-5 mt-5">
         <table className="table table-xs md:table-md">
           {/* head */}
           <thead>
@@ -70,32 +70,32 @@ export default function Team() {
           <tbody>
             {employees
               ? employees.map((employee, i) => (
-                  <TeamTable
-                    key={i}
-                    employee={employee}
-                    i={i}
-                    btn={() => handleUserRemove(employee.email)}
-                  />
-                ))
+                <TeamTable
+                  key={i}
+                  employee={employee}
+                  i={i}
+                  btn={() => handleUserRemove(employee.email)}
+                />
+              ))
               : Array.from({ length: 5 }).map((_, i) => (
-                  <tr key={i} className="hover:bg-base-300 animate-pulse">
-                    <th>
-                      <Skeleton className="block" />
-                    </th>
-                    <td>
-                      <Skeleton className="block" />
-                    </td>
-                    <td>
-                      <Skeleton className="block" />
-                    </td>
-                    <td>
-                      <Skeleton className="block" />
-                    </td>
-                    <td>
-                      <Skeleton className="block" />
-                    </td>
-                  </tr>
-                ))}
+                <tr key={i} className="hover:bg-base-300 animate-pulse">
+                  <th>
+                    <Skeleton className="block" />
+                  </th>
+                  <td>
+                    <Skeleton className="block" />
+                  </td>
+                  <td>
+                    <Skeleton className="block" />
+                  </td>
+                  <td>
+                    <Skeleton className="block" />
+                  </td>
+                  <td>
+                    <Skeleton className="block" />
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

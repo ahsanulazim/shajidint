@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import {
   onAuthStateChanged,
@@ -103,6 +103,16 @@ export default function MyContext({ children }) {
       });
   };
 
+  //dashboard context
+  const [isDark, setIsDark] = useState(false)
+  const themeToggler = useRef(null);
+
+  useEffect(() => {
+    if (!themeToggler?.current) return;
+    themeToggler.current.setAttribute("data-theme", isDark ? "dark" : "light");
+  }, [isDark])
+
+
   const data = {
     navbar,
     footer,
@@ -112,6 +122,9 @@ export default function MyContext({ children }) {
     loading,
     serverUrl,
     currentUser,
+    isDark,
+    setIsDark,
+    themeToggler,
   };
 
   return <NavContext value={data}>{children}</NavContext>;

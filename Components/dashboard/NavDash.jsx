@@ -4,16 +4,20 @@ import { NavContext } from "@/context/MyContext";
 import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
-import { FaArrowRightToBracket, FaBell, FaGear, FaUser } from "react-icons/fa6";
+import { FaArrowRightToBracket, FaBell, FaGear, FaMoon, FaSun, FaUser } from "react-icons/fa6";
 
 export default function NavDash({ logout }) {
 
-    const { user, currentUser } = useContext(NavContext);
+    const { user, currentUser, isDark, setIsDark } = useContext(NavContext);
+
+    const themeHandler = () => {
+        setIsDark((prev) => !prev);
+    }
 
     return (
         <>
 
-            <header className="navbar bg-white w-full border-b border-b-gray-300">
+            <header className="navbar bg-base-300 w-full">
                 <div className="flex-none lg:hidden">
                     <label
                         htmlFor="my-drawer-3"
@@ -37,13 +41,11 @@ export default function NavDash({ logout }) {
                 </div>
                 <div className="mx-2 flex-1 px-2">
                     <Link href="/">
-                        <Image
-                            src="/shajidint.svg"
-                            alt="Shajid International Logo"
-                            width={128}
-                            height={34}
-                            className="w-full max-w-28 md:max-w-32"
-                        />
+                        {isDark ?
+                            <img className="w-full max-w-28 md:max-w-32" src="/shajidintDark.svg" alt="Shajid International Logo" />
+                            :
+                            <img className="w-full max-w-28 md:max-w-32" src="/shajidint.svg" alt="Shajid International Logo" />}
+
                     </Link>
                 </div>
                 <div className="flex-none">
@@ -117,6 +119,11 @@ export default function NavDash({ logout }) {
                                 <Link href="/dashboard/profile">
                                     <FaUser /> Profile
                                 </Link>
+                            </li>
+                            <li>
+                                <button onClick={themeHandler}>
+                                    {isDark ? <><FaSun />Light Mode</> : <><FaMoon /> Dark Mode</>}
+                                </button>
                             </li>
                             <li>
                                 <Link href="/dashboard/settings">

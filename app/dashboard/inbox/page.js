@@ -43,7 +43,7 @@ export default function Inbox() {
           See All massages and entries
         </p>
       </div>
-      <div className="overflow-x-auto  bg-white shadow-md rounded-lg p-5 mt-5">
+      <div className="overflow-x-auto  bg-base-200 shadow-md rounded-lg p-5 mt-5">
         <table className="table table-xs md:table-md">
           {/* head */}
           <thead>
@@ -58,60 +58,60 @@ export default function Inbox() {
             {/* Table Rows */}
             {msgs
               ? msgs.map((msg, i) => (
-                  <tr key={i}>
-                    <th>{i + 1}</th>
+                <tr key={i}>
+                  <th>{i + 1}</th>
 
-                    <td>
-                      {msg.query.length >= 100
-                        ? msg.query.slice(0, 100) + "..."
-                        : msg.query}
-                      <p className="flex items-center gap-x-2 text-gray-500 w-fit">
-                        <FaRegCalendarDays /> {msg.sendDate}
-                      </p>
-                    </td>
-                    <td>
-                      <h4 className="font-bold uppercase">{msg.name}</h4>
-                      {msg.company && <p>{msg.company}</p>}
-                      <a
-                        href={`mailto:${msg.email}`}
-                        className="w-fit text-gray-500 flex gap-x-2 items-center"
-                      >
-                        <FaEnvelope /> {msg.email}
-                      </a>
-                    </td>
-                    <td>
-                      <div className="flex gap-2">
-                        <Link href={`/dashboard/inbox/${msg._id}`}>
-                          <button className="btn btn-success btn-circle btn-sm md:btn-md">
-                            <FaEye />
-                          </button>
-                        </Link>
-                        <button
-                          className="btn btn-error btn-circle btn-sm md:btn-md"
-                          onClick={() => handleMsgDel(msg._id)}
-                        >
-                          <FaTrashCan />
+                  <td>
+                    {msg.query.length >= 100
+                      ? msg.query.slice(0, 100) + "..."
+                      : msg.query}
+                    <p className="flex items-center gap-x-2 text-gray-500 w-fit">
+                      <FaRegCalendarDays /> {msg.sendDate}
+                    </p>
+                  </td>
+                  <td>
+                    <h4 className="font-bold uppercase">{msg.name}</h4>
+                    {msg.company && <p>{msg.company}</p>}
+                    <a
+                      href={`mailto:${msg.email}`}
+                      className="w-fit text-gray-500 flex gap-x-2 items-center"
+                    >
+                      <FaEnvelope /> {msg.email}
+                    </a>
+                  </td>
+                  <td>
+                    <div className="flex gap-2">
+                      <Link href={`/dashboard/inbox/${msg._id}`}>
+                        <button className="btn btn-success btn-circle btn-sm md:btn-md">
+                          <FaEye />
                         </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))
+                      </Link>
+                      <button
+                        className="btn btn-error btn-circle btn-sm md:btn-md"
+                        onClick={() => handleMsgDel(msg._id)}
+                      >
+                        <FaTrashCan />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))
               : Array.from({ length: 5 }).map((_, i) => (
-                  <tr key={i} className="hover:bg-base-300 animate-pulse">
-                    <th>
-                      <Skeleton className="block" />
-                    </th>
-                    <td>
-                      <Skeleton className="block" />
-                    </td>
-                    <td>
-                      <Skeleton className="block" />
-                    </td>
-                    <td>
-                      <Skeleton className="block" />
-                    </td>
-                  </tr>
-                ))}
+                <tr key={i} className="hover:bg-base-300 animate-pulse">
+                  <th>
+                    <Skeleton className="block" />
+                  </th>
+                  <td>
+                    <Skeleton className="block" />
+                  </td>
+                  <td>
+                    <Skeleton className="block" />
+                  </td>
+                  <td>
+                    <Skeleton className="block" />
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

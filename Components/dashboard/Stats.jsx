@@ -3,7 +3,7 @@ import { IoChatbubbles } from "react-icons/io5";
 
 export default function Stats({ stat }) {
     return (
-        <div className="bg-white p-5 rounded-md shadow-sm flex items-center justify-between">
+        <div className="bg-base-200 p-5 rounded-md shadow-sm flex items-center justify-between">
             <div>
                 <h3 className="font-bold text-gray-400 uppercase text-sm mb-1">{stat.title}</h3>
                 <h2 className="text-4xl mb-1">{stat.value}</h2>

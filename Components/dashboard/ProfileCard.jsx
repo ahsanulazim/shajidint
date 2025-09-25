@@ -133,7 +133,7 @@ export default function ProfileCard() {
   );
 
   return (
-    <div className="md:flex md:items-center lg:max-w-3xl bg-white rounded-md overflow-clip shadow-sm">
+    <div className="md:flex md:items-center lg:max-w-3xl bg-base-200 rounded-md overflow-clip shadow-sm">
       <div className="rounded-md overflow-clip md:p-5 md:pr-0 relative w-full">
         {profileData?.proPic ? (
           <img

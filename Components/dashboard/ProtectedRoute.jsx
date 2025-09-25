@@ -15,7 +15,7 @@ export default function ProtectedRoute({ children }) {
     }
   }, [user, loading, path]);
 
-  if (loading) return <Loader/>; // Prevent flash of protected content
+  if (loading) return <Loader />; // Prevent flash of protected content
   if (!user) return null;
 
   return <>{children}</>;
