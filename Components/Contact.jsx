@@ -10,7 +10,7 @@ import { BsWechat } from "react-icons/bs";
 
 export default function Contact() {
   return (
-    <section className="max-w-[1440px] mx-auto p-5 md:px-10 md:py-20 flex flex-col md:items-center md:flex-row gap-5">
+    <div className="max-w-[1440px] mx-auto p-5 md:px-10 md:py-20 flex flex-col md:items-center md:flex-row gap-5">
       <div>
         <h2 className="font-bold text-4xl lg:text-5xl tracking-tighter mb-5 text-balance">
           For Any Questions Assistance or Business Inquiries
@@ -46,6 +46,6 @@ export default function Contact() {
         </div>
       </div>
       <ContactFrom />
-    </section>
+    </div>
   );
 }

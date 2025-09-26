@@ -28,9 +28,11 @@ export default function Home() {
         <section className="hidden lg:block py-15 px-5 lg:px-10">
           <HeroCarousel />
         </section>
-        <Supply />
+        {/* <Supply /> */}
         <Services />
-        <Contact />
+        <section className="bg-base-300" data-theme="light">
+          <Contact />
+        </section>
       </main>
     </>
   );
