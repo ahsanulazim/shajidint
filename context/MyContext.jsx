@@ -105,6 +105,7 @@ export default function MyContext({ children }) {
 
   //dashboard context
   const [isDark, setIsDark] = useState(false)
+  const [msgs, setMsgs] = useState(null);
   const themeToggler = useRef(null);
 
   useEffect(() => {
@@ -112,6 +113,12 @@ export default function MyContext({ children }) {
     themeToggler.current.setAttribute("data-theme", isDark ? "dark" : "light");
   }, [isDark])
 
+  //Msg fetch
+  useEffect(() => {
+    fetch(`${serverUrl}/msgs`)
+      .then((res) => res.json())
+      .then((data) => setMsgs(data));
+  }, [msgs]);
 
   const data = {
     navbar,
@@ -125,6 +132,7 @@ export default function MyContext({ children }) {
     isDark,
     setIsDark,
     themeToggler,
+    msgs,
   };
 
   return <NavContext value={data}>{children}</NavContext>;

@@ -16,15 +16,8 @@ import {
 } from "react-icons/fa6";
 
 export default function Inbox() {
-  const { serverUrl } = useContext(NavContext);
-  const [msgs, setMsgs] = useState(null);
+  const { msgs } = useContext(NavContext);
   const [delMsg, setDelMsg] = useState(null);
-
-  useEffect(() => {
-    fetch(`${serverUrl}/msgs`)
-      .then((res) => res.json())
-      .then((data) => setMsgs(data));
-  }, [msgs]);
 
   const deleteMsg = useRef();
 
