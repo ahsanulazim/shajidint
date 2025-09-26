@@ -50,11 +50,11 @@ export default function Dashboard() {
         </p>
       </div>
       {/* Project Status */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 grid-rows-5 gap-5 mt-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 grid-rows-7 sm:grid-rows-5 gap-5 mt-5">
         {dummyStats.map((stat) => (
           <Stats key={stat.id} stat={stat} />
         ))}
-        <div className="bg-base-200 p-5 rounded-md col-span-2 row-span-4">
+        <div className="bg-base-200 p-5 rounded-md row-span-3 sm:col-span-2 sm:row-span-4">
           <h2 className="text-xl mb-5 font-bold tracking-tighter">
             Massage Status
           </h2>
