@@ -104,14 +104,14 @@ export default function MyContext({ children }) {
   };
 
   //dashboard context
-  const [isDark, setIsDark] = useState(false)
+  const [isDark, setIsDark] = useState(false);
   const [msgs, setMsgs] = useState(null);
   const themeToggler = useRef(null);
 
   useEffect(() => {
     if (!themeToggler?.current) return;
     themeToggler.current.setAttribute("data-theme", isDark ? "dark" : "light");
-  }, [isDark])
+  }, [isDark]);
 
   //Msg fetch
   useEffect(() => {
@@ -131,41 +131,39 @@ export default function MyContext({ children }) {
       const date = d.toLocaleDateString("en-BD", {
         timeZone: "Asia/Dhaka",
         day: "numeric",
-        month: "short"
+        month: "short",
       });
       return {
         rawDate: d.toISOString().split("T")[0],
-        count: 0
+        count: 0,
       };
-
     });
   };
-
 
   const [stats, setStats] = useState([generateDummyStats()]);
 
   useEffect(() => {
     fetch(`${serverUrl}/msg-stats`)
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         const formatted = data
-          .filter(item => item.date)
-          .map(item => ({
+          .filter((item) => item.date)
+          .map((item) => ({
             rawDate: new Date(item.date).toISOString().split("T")[0],
-            count: item.count
+            count: item.count,
           }));
 
         const last7Days = generateDummyStats();
 
-        const merged = last7Days.map(day => {
-          const match = formatted.find(f => f.rawDate === day.rawDate);
+        const merged = last7Days.map((day) => {
+          const match = formatted.find((f) => f.rawDate === day.rawDate);
           return {
             date: new Date(day.rawDate).toLocaleDateString("en-BD", {
               timeZone: "Asia/Dhaka",
               day: "numeric",
-              month: "short"
+              month: "short",
             }),
-            count: match ? match.count : 0
+            count: match ? match.count : 0,
           };
         });
 
@@ -173,7 +171,19 @@ export default function MyContext({ children }) {
       });
   }, []);
 
+  //1 Month Massage Stats Get
 
+  const [massageCount, setMessageCount] = useState(null);
+  const [massageGrowth, setMessageGrowth] = useState(null);
+
+  useEffect(() => {
+    fetch(`${serverUrl}/msg-stats-summary`)
+      .then((res) => res.json())
+      .then(({ currentCount, percentChange }) => {
+        setMessageCount(currentCount);
+        setMessageGrowth(percentChange);
+      });
+  }, []);
 
   const data = {
     navbar,
@@ -189,6 +199,8 @@ export default function MyContext({ children }) {
     themeToggler,
     msgs,
     stats,
+    massageCount,
+    massageGrowth,
   };
 
   return <NavContext value={data}>{children}</NavContext>;
