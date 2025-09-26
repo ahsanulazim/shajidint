@@ -60,9 +60,7 @@ export default function Team() {
           {/* head */}
           <thead>
             <tr>
-              <th>#</th>
               <th>Name</th>
-              <th>Job</th>
               <th>Role</th>
               <th>Action</th>
             </tr>
@@ -79,12 +77,6 @@ export default function Team() {
               ))
               : Array.from({ length: 5 }).map((_, i) => (
                 <tr key={i} className="hover:bg-base-300 animate-pulse">
-                  <th>
-                    <Skeleton className="block" />
-                  </th>
-                  <td>
-                    <Skeleton className="block" />
-                  </td>
                   <td>
                     <Skeleton className="block" />
                   </td>
