@@ -7,8 +7,10 @@ import { NavContext } from "@/context/MyContext";
 import Link from "next/link";
 import { useContext, useEffect, useRef, useState } from "react";
 import {
+  FaEllipsisVertical,
   FaEnvelope,
   FaEye,
+  FaPhone,
   FaRegCalendarDays,
   FaTrashCan,
 } from "react-icons/fa6";
@@ -43,78 +45,49 @@ export default function Inbox() {
           See All massages and entries
         </p>
       </div>
-      <div className="overflow-x-auto  bg-base-200 shadow-md rounded-lg p-5 mt-5">
-        <table className="table table-xs md:table-md">
-          {/* head */}
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Massage</th>
-              <th>Name</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* Table Rows */}
-            {msgs
-              ? msgs.map((msg, i) => (
-                <tr key={i}>
-                  <th>{i + 1}</th>
 
-                  <td>
-                    {msg.query.length >= 100
-                      ? msg.query.slice(0, 100) + "..."
-                      : msg.query}
-                    <p className="flex items-center gap-x-2 text-gray-500 w-fit">
-                      <FaRegCalendarDays /> {msg.sendDate}
-                    </p>
-                  </td>
-                  <td>
-                    <h4 className="font-bold uppercase">{msg.name}</h4>
-                    {msg.company && <p>{msg.company}</p>}
-                    <a
-                      href={`mailto:${msg.email}`}
-                      className="w-fit text-gray-500 flex gap-x-2 items-center"
-                    >
-                      <FaEnvelope /> {msg.email}
-                    </a>
-                  </td>
-                  <td>
-                    <div className="flex gap-2">
-                      <Link href={`/dashboard/inbox/${msg._id}`}>
-                        <button className="btn btn-success btn-circle btn-sm md:btn-md">
-                          <FaEye />
-                        </button>
-                      </Link>
-                      <button
-                        className="btn btn-error btn-circle btn-sm md:btn-md"
-                        onClick={() => handleMsgDel(msg._id)}
-                      >
-                        <FaTrashCan />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))
-              : Array.from({ length: 5 }).map((_, i) => (
-                <tr key={i} className="hover:bg-base-300 animate-pulse">
-                  <th>
-                    <Skeleton className="block" />
-                  </th>
-                  <td>
-                    <Skeleton className="block" />
-                  </td>
-                  <td>
-                    <Skeleton className="block" />
-                  </td>
-                  <td>
-                    <Skeleton className="block" />
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
-      </div>
+      {/* Massages box */}
+
+      <ul className="list bg-base-100 rounded-box shadow-md mt-5">
+
+        <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">Recent Massages First</li>
+
+        {msgs
+          ? msgs.map((msg, i) => (
+            <li className="list-row items-center" key={msg._id}>
+              <Link href={`/dashboard/inbox/${msg._id}`} className="list-col-grow flex-1 min-w-0">
+
+                <h3 className="font-bold uppercase">{msg.name}</h3>
+                <p className="text-xs opacity-60 truncate">{msg.query}</p>
+                <span className="text-xs flex items-center gap-2 mt-1 opacity-60"><FaRegCalendarDays /> {msg.sendDate}</span>
+
+              </Link>
+              <div className="dropdown dropdown-end">
+                <button tabIndex={0} role="button" className="btn m-1 btn-soft btn-square btn-sm md:btn-md"><FaEllipsisVertical /></button>
+                <ul tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box z-1 w-52 p-2 shadow-md">
+                  <li><Link href={`/dashboard/inbox/${msg._id}`} className="list-col-grow "><FaEye className="text-success" /> View</Link></li>
+                  <li><a href={`tel:${msg.phone}`}><FaPhone className="text-info" /> Call</a></li>
+                  <li><a href={`mailto:${msg.email}`}><FaEnvelope className="text-warning" /> Send Email</a></li>
+                  <li><button onClick={() => handleMsgDel(msg._id)}>
+                    <FaTrashCan className="text-error" /> Delete
+                  </button></li>
+                </ul>
+              </div>
+            </li>
+          ))
+          : Array.from({ length: 5 }).map((_, i) => (
+            <li className="list-row items-center" key={i}>
+              <div className="list-col-grow flex-1 min-w-0">
+
+                <Skeleton className="block max-w-xs" />
+                <Skeleton className="block mt-2" />
+                <span className="text-xs flex items-center gap-2 mt-2 opacity-60"><FaRegCalendarDays /> <Skeleton /></span>
+
+              </div>
+            </li>))
+        }
+
+      </ul>
     </>
   );
 }
