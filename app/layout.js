@@ -22,7 +22,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light">
-      <body className={`${dmSans.variable} font-mono antialiased`}>
+      <body className={`${dmSans.variable} font-mono antialiased bg-base-300`}>
         <MyContext>
           <ToastContainer
             position="top-right"

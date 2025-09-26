@@ -49,7 +49,6 @@ export default function Navbar({ glass, user }) {
                         </ul>
                     </div>
                     <div className="navbar-end">
-                        <Link href="/projects" className=""><button className="btn btn-outline border-white/40 hover:bg-transparent hover:border-white rounded-md hidden sm:block">Projects</button></Link>
                         {user ? <Link href="/dashboard" className=""><button className="btn bg-white text-black rounded-md ms-2">Dashboard</button></Link> : <Link href="/login" className=""><button className="btn bg-white text-black rounded-md ms-2">Login</button></Link>}
 
                     </div>
