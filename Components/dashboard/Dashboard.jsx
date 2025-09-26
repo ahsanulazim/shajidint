@@ -1,3 +1,4 @@
+import Charts from "./Charts";
 import Stats from "./Stats";
 
 export default function Dashboard() {
@@ -27,7 +28,10 @@ export default function Dashboard() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 mt-5">
                 {dummyStats.map(stat => <Stats key={stat.id} stat={stat} />)}
             </div>
-
+            <div className="h-[600px] w-[800px] bg-base-200 p-5 mt-5 rounded-md">
+                <h2 className="text-xl mb-5 font-bold tracking-tighter">Massage Status</h2>
+                <Charts />
+            </div>
 
 
 

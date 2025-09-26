@@ -120,6 +120,61 @@ export default function MyContext({ children }) {
       .then((data) => setMsgs(data));
   }, [msgs]);
 
+  //Massage Data for Chart
+
+  // Dummy fallback for last 7 days
+  const generateDummyStats = () => {
+    const today = new Date();
+    return Array.from({ length: 7 }, (_, i) => {
+      const d = new Date(today);
+      d.setDate(today.getDate() - (6 - i));
+      const date = d.toLocaleDateString("en-BD", {
+        timeZone: "Asia/Dhaka",
+        day: "numeric",
+        month: "short"
+      });
+      return {
+        rawDate: d.toISOString().split("T")[0],
+        count: 0
+      };
+
+    });
+  };
+
+
+  const [stats, setStats] = useState([generateDummyStats()]);
+
+  useEffect(() => {
+    fetch(`${serverUrl}/msg-stats`)
+      .then(res => res.json())
+      .then(data => {
+        const formatted = data
+          .filter(item => item.date)
+          .map(item => ({
+            rawDate: new Date(item.date).toISOString().split("T")[0],
+            count: item.count
+          }));
+
+        const last7Days = generateDummyStats();
+
+        const merged = last7Days.map(day => {
+          const match = formatted.find(f => f.rawDate === day.rawDate);
+          return {
+            date: new Date(day.rawDate).toLocaleDateString("en-BD", {
+              timeZone: "Asia/Dhaka",
+              day: "numeric",
+              month: "short"
+            }),
+            count: match ? match.count : 0
+          };
+        });
+
+        setStats(merged);
+      });
+  }, []);
+
+
+
   const data = {
     navbar,
     footer,
@@ -133,6 +188,7 @@ export default function MyContext({ children }) {
     setIsDark,
     themeToggler,
     msgs,
+    stats,
   };
 
   return <NavContext value={data}>{children}</NavContext>;
