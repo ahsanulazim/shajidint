@@ -187,7 +187,13 @@ export default function MyContext({ children }) {
 
   //Visitor Tracking Post
   useEffect(() => {
-    fetch(`${serverUrl}/visitors/track`, { method: "POST" });
+    fetch(`${serverUrl}/visitors/track`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "User-Agent": navigator.userAgent,
+      },
+    });
   }, []);
 
   //Visitor Count Context
