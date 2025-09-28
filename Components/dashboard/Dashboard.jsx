@@ -70,8 +70,7 @@ export default function Dashboard() {
           </h2>
           <div className="divider mb-5"></div>
           <VisitorPieChart />
-          <div className="divider mb-5"></div>
-          <div className="stats w-full">
+          <div className="stats w-full bg-base-300">
             <div className="stat text-center">
               <h3>50%</h3>
               <p className="text-gray-500">Mobile</p>

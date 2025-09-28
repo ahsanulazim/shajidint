@@ -10,9 +10,8 @@ const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
 
 export default function VisitorPieChart() {
   return (
-    <ResponsiveContainer width="100%" height={290}>
+    <ResponsiveContainer width="100%" height={340}>
       <PieChart width={420} height={420}>
-        <h2 className="">75%</h2>
         <text
           x="50%"
           y="50%"
@@ -20,7 +19,7 @@ export default function VisitorPieChart() {
           dominantBaseline="middle"
           fontSize={24}
           fontWeight="bold"
-          fill="#333"
+          fill="oklch(70.7% 0.022 261.325)"
         >
           75%
         </text>
@@ -33,7 +32,7 @@ export default function VisitorPieChart() {
           cx="50%"
           cy="50%"
           innerRadius={100}
-          outerRadius={120}
+          outerRadius={130}
           fill="#8884d8"
           isAnimationActive={false}
           dataKey="value"
