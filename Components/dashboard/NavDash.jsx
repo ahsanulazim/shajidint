@@ -17,7 +17,7 @@ export default function NavDash({ logout }) {
     return (
         <>
 
-            <header className="navbar bg-base-300 w-full">
+            <header className="navbar bg-base-300 justify-between w-full">
                 <div className="flex-none lg:hidden">
                     <label
                         htmlFor="my-drawer-3"
@@ -39,7 +39,7 @@ export default function NavDash({ logout }) {
                         </svg>
                     </label>
                 </div>
-                <div className="mx-2 flex-1 px-2">
+                <div className="mx-2 px-2">
                     <Link href="/">
                         {isDark ?
                             <img className="w-full max-w-28 md:max-w-32" src="/shajidintDark.svg" alt="Shajid International Logo" />

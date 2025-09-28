@@ -56,7 +56,7 @@ export default function Inbox() {
 
               </Link>
               <div className="dropdown dropdown-end">
-                <button tabIndex={0} role="button" className="btn m-1 btn-soft btn-square btn-sm md:btn-md"><FaEllipsisVertical /></button>
+                <button tabIndex={0} role="button" className="btn m-1 btn-soft btn-info btn-square btn-sm md:btn-md"><FaEllipsisVertical /></button>
                 <ul tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box z-1 w-52 p-2 shadow-md">
                   <li><Link href={`/dashboard/inbox/${msg._id}`} className="list-col-grow "><FaEye className="text-success" /> View</Link></li>
                   <li><a href={`tel:${msg.phone}`}><FaPhone className="text-info" /> Call</a></li>

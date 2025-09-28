@@ -9,10 +9,10 @@ import VisitorPieChart from "./VisitorPieChart";
 export default function Dashboard() {
   const { massageCount, massageGrowth } = useContext(NavContext);
 
-  const dummyStats = [
+  const realStats = [
     {
       id: 1,
-      title: "Total Projects",
+      title: "Total Visitors",
       value: "50",
       percent: "5%",
       up: true,
@@ -51,21 +51,40 @@ export default function Dashboard() {
         </p>
       </div>
       {/* Project Status */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 mt-5">
-        {dummyStats.map((stat) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 mt-5">
+        {realStats.map((stat) => (
           <Stats key={stat.id} stat={stat} />
         ))}
       </div>
-      <div className="mt-5 grid grid-cols-2">
-        <div className="widgetDash">
+      <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+        <div className="widgetDash xl:col-span-2">
           <h2 className="text-xl mb-5 font-bold tracking-tighter">
             Massage Status
           </h2>
           <div className="divider mb-5"></div>
           <Charts />
         </div>
-        <div className="widgetdash">
+        <div className="widgetDash">
+          <h2 className="text-xl mb-5 font-bold tracking-tighter">
+            Visitors
+          </h2>
+          <div className="divider mb-5"></div>
           <VisitorPieChart />
+          <div className="divider mb-5"></div>
+          <div className="stats w-full">
+            <div className="stat text-center">
+              <h3>50%</h3>
+              <p className="text-gray-500">Mobile</p>
+            </div>
+            <div className="stat text-center">
+              <h3>50%</h3>
+              <p className="text-gray-500">Tablet</p>
+            </div>
+            <div className="stat text-center">
+              <h3>50%</h3>
+              <p className="text-gray-500">Desktop</p>
+            </div>
+          </div>
         </div>
       </div>
     </>

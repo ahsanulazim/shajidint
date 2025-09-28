@@ -52,7 +52,7 @@ export default function MyContext({ children }) {
 
         if (!email) return;
 
-        fetch(`${serverUrl}/loginuser/${email}`)
+        fetch(`${serverUrl}/users/${email}`)
           .then((res) => res.json())
           .then((data) => setCurrentUser(data))
           .catch((err) => {
@@ -143,7 +143,7 @@ export default function MyContext({ children }) {
   const [stats, setStats] = useState([generateDummyStats()]);
 
   useEffect(() => {
-    fetch(`${serverUrl}/msg-stats`)
+    fetch(`${serverUrl}/msgs/stats/all`)
       .then((res) => res.json())
       .then((data) => {
         const formatted = data
@@ -177,7 +177,7 @@ export default function MyContext({ children }) {
   const [massageGrowth, setMessageGrowth] = useState(null);
 
   useEffect(() => {
-    fetch(`${serverUrl}/msg-stats-summary`)
+    fetch(`${serverUrl}/msgs/stats/summary`)
       .then((res) => res.json())
       .then(({ currentCount, percentChange }) => {
         setMessageCount(currentCount);

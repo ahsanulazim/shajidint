@@ -1,4 +1,4 @@
-import { FaCaretDown, FaCaretUp, FaDollarSign, FaFileZipper, FaTriangleExclamation } from "react-icons/fa6";
+import { FaArrowPointer, FaCaretDown, FaCaretUp, FaDollarSign, FaFileZipper, FaTriangleExclamation } from "react-icons/fa6";
 import { IoChatbubbles } from "react-icons/io5";
 
 export default function Stats({ stat }) {
@@ -11,7 +11,7 @@ export default function Stats({ stat }) {
             </div>
             <div className="avatar avatar-placeholder">
 
-                {stat.id === 1 && <div className="bg-accent text-accent-content w-16 rounded-full"><FaFileZipper className="text-2xl" /></div>}
+                {stat.id === 1 && <div className="bg-accent text-accent-content w-16 rounded-full"><FaArrowPointer className="text-2xl" /></div>}
                 {stat.id === 2 && <div className="bg-info text-info-content w-16 rounded-full"><IoChatbubbles className="text-2xl" /></div>}
                 {stat.id === 3 && <div className="bg-success text-success-content w-16 rounded-full"><FaDollarSign className="text-2xl" /></div>}
                 {stat.id === 4 && <div className="bg-warning text-warning-content w-16 rounded-full"><FaTriangleExclamation className="text-2xl" /></div>}

@@ -20,7 +20,7 @@ export default function Charts() {
       <ResponsiveContainer width="100%" height={420}>
         <BarChart width={400} height={40} data={stats}>
           <XAxis dataKey="date" axisLine={false} tickLine={false} />
-          <YAxis axisLine={false} tickLine={false} />
+          <YAxis axisLine={false} tickLine={false} allowDecimals={false} interval={0} />
           <Tooltip
             content={<ChartTooltip />}
             cursor={{ fill: "transparent" }}
