@@ -187,6 +187,9 @@ export default function MyContext({ children }) {
 
   //Visitor Tracking Post
   useEffect(() => {
+    const alreadyTracked = localStorage.getItem("visitorTracked");
+    if (alreadyTracked) return;
+
     const ua = navigator.userAgent;
 
     let name = "desktop"; // default
@@ -203,8 +206,6 @@ export default function MyContext({ children }) {
         "Content-Type": "application/json",
         "User-Agent": navigator.userAgent,
       },
-      body: JSON.stringify({}),
-      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name }),
     }).then(() => {
       localStorage.setItem("visitorTracked", "true");
