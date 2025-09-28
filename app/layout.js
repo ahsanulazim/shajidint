@@ -4,6 +4,7 @@ import Header from "@/Components/Header";
 import MyContext from "@/context/MyContext";
 import FooterWrapper from "@/Components/FooterWrapper";
 import { Bounce, ToastContainer } from "react-toastify";
+import { VisitorProvider } from "@/context/VisitorContext";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -21,27 +22,29 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${dmSans.variable} font-mono antialiased bg-base-300`}>
-        <MyContext>
-          <ToastContainer
-            position="top-right"
-            autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick={false}
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-            transition={Bounce}
-          />
-          <Header />
-          {children}
-          <FooterWrapper />
-        </MyContext>
-      </body>
-    </html>
+    <VisitorProvider>
+      <html lang="en">
+        <body className={`${dmSans.variable} font-mono antialiased bg-base-300`}>
+          <MyContext>
+            <ToastContainer
+              position="top-right"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick={false}
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+              transition={Bounce}
+            />
+            <Header />
+            {children}
+            <FooterWrapper />
+          </MyContext>
+        </body>
+      </html>
+    </VisitorProvider>
   );
 }
