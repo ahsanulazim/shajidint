@@ -187,12 +187,19 @@ export default function MyContext({ children }) {
 
   //Visitor Tracking Post
   useEffect(() => {
-    fetch(`${serverUrl}/visitors/track`, {
+    const alreadyTracked = localStorage.getItem("visitorTracked");
+    if (alreadyTracked) return;
+
+    const deviceType = /Mobi|Android/i.test(navigator.userAgent)
+      ? "mobile"
+      : "desktop";
+
+    fetch(`${serverUrl}/visitors/track-visitor`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "User-Agent": navigator.userAgent,
-      },
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ deviceType }),
+    }).then(() => {
+      localStorage.setItem("visitorTracked", "true");
     });
   }, []);
 
@@ -200,7 +207,7 @@ export default function MyContext({ children }) {
   const [visitorData, setVisitorData] = useState([]);
 
   useEffect(() => {
-    fetch(`${serverUrl}/visitors/stats`)
+    fetch(`${serverUrl}/visitors/visitor-stats`)
       .then((res) => res.json())
       .then((stats) => {
         const formatted = stats.dateStats.map((d) => ({
