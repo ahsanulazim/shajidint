@@ -192,9 +192,9 @@ export default function MyContext({ children }) {
     let name = "desktop"; // default
 
     if (/Tablet|iPad/i.test(ua)) {
-      deviceType = "tablet";
+      name = "tablet";
     } else if (/Mobi|Android/i.test(ua)) {
-      deviceType = "mobile";
+      name = "mobile";
     }
 
     fetch(`${serverUrl}/visitors/track-visitor`, {
