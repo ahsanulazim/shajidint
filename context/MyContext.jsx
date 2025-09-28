@@ -185,6 +185,11 @@ export default function MyContext({ children }) {
       });
   }, []);
 
+  //Visitor Tracking Post
+  useEffect(() => {
+    fetch(`${serverUrl}/visitors/track`, { method: "POST" });
+  }, []);
+
   //Visitor Count Context
   const [visitorData, setVisitorData] = useState([]);
 
