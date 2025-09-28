@@ -7,15 +7,22 @@ import { NavContext } from "@/context/MyContext";
 import VisitorPieChart from "./VisitorPieChart";
 
 export default function Dashboard() {
-  const { massageCount, massageGrowth } = useContext(NavContext);
+  const {
+    massageCount,
+    massageGrowth,
+    visitorData,
+    visitorGrowth,
+    deviceData,
+  } = useContext(NavContext);
+  console.log(deviceData);
 
   const realStats = [
     {
       id: 1,
       title: "Total Visitors",
-      value: "50",
-      percent: "5%",
-      up: true,
+      value: visitorData.monthly,
+      percent: visitorGrowth + "%",
+      up: visitorGrowth >= 0,
     },
     {
       id: 2,
@@ -68,19 +75,16 @@ export default function Dashboard() {
           <h2 className="text-xl mb-5 font-bold tracking-tighter">Visitors</h2>
           <div className="divider mb-5"></div>
           <VisitorPieChart />
+
+          {/* Devicewise Visitor Data */}
+
           <div className="stats w-full bg-base-300">
-            <div className="stat text-center">
-              <h3>50%</h3>
-              <p className="text-gray-500">Mobile</p>
-            </div>
-            <div className="stat text-center">
-              <h3>50%</h3>
-              <p className="text-gray-500">Tablet</p>
-            </div>
-            <div className="stat text-center">
-              <h3>50%</h3>
-              <p className="text-gray-500">Desktop</p>
-            </div>
+            {deviceData.map((device) => (
+              <div key={device.name} className="stat text-center">
+                <h3>{device.value}</h3>
+                <p className="text-gray-500">{device.name}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

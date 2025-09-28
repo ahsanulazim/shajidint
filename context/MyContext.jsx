@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useEffect, useRef, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import {
   onAuthStateChanged,
@@ -106,11 +106,16 @@ export default function MyContext({ children }) {
   //dashboard context
   const [isDark, setIsDark] = useState(false);
   const [msgs, setMsgs] = useState(null);
-  const themeToggler = useRef(null);
 
+  // Load theme from localStorage
   useEffect(() => {
-    if (!themeToggler?.current) return;
-    themeToggler.current.setAttribute("data-theme", isDark ? "dark" : "light");
+    const storedTheme = localStorage.getItem("theme");
+    setIsDark(storedTheme === "dark");
+  }, []);
+
+  // Save theme preference
+  useEffect(() => {
+    localStorage.setItem("theme", isDark ? "dark" : "light");
   }, [isDark]);
 
   //Msg fetch
@@ -229,6 +234,18 @@ export default function MyContext({ children }) {
       });
   }, []);
 
+  //Monthly Visitor Growth
+
+  const [visitorGrowth, setVisitorGrowth] = useState(null);
+
+  useEffect(() => {
+    fetch(`${serverUrl}/visitors/monthly-summary`)
+      .then((res) => res.json())
+      .then(({ percentChange }) => {
+        setVisitorGrowth(percentChange);
+      });
+  }, []);
+
   const data = {
     navbar,
     footer,
@@ -240,13 +257,13 @@ export default function MyContext({ children }) {
     currentUser,
     isDark,
     setIsDark,
-    themeToggler,
     msgs,
     stats,
     massageCount,
     massageGrowth,
     visitorData,
     deviceData,
+    visitorGrowth,
   };
 
   return <NavContext value={data}>{children}</NavContext>;

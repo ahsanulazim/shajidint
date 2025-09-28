@@ -19,7 +19,7 @@ import { IoChatbubbles } from "react-icons/io5";
 import { RiLayout2Fill } from "react-icons/ri";
 
 export default function RootLayout({ children }) {
-  const { currentUser, themeToggler } = useContext(NavContext);
+  const { currentUser, isDark } = useContext(NavContext);
 
   const logoutUser = useRef();
 
@@ -31,7 +31,10 @@ export default function RootLayout({ children }) {
     <>
       <ProtectedRoute>
         <LogoutModal logoutUser={logoutUser} />
-        <div className="drawer lg:drawer-open bg-base-300" ref={themeToggler}>
+        <div
+          className="drawer lg:drawer-open bg-base-300"
+          data-theme={isDark ? "dark" : "light"}
+        >
           <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content flex flex-col ">
             {/* Navbar */}

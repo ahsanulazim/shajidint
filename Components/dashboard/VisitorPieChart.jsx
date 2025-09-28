@@ -15,9 +15,6 @@ const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
 export default function VisitorPieChart() {
   const { visitorData, deviceData } = useContext(NavContext);
 
-  console.log(visitorData);
-  console.log("device:", deviceData);
-
   return (
     <ResponsiveContainer width="100%" height={340}>
       <PieChart width={420} height={420}>
@@ -30,7 +27,7 @@ export default function VisitorPieChart() {
           fontWeight="bold"
           fill="oklch(70.7% 0.022 261.325)"
         >
-          75%
+          {visitorData.monthly}
         </text>
         <Tooltip content={<ChartTooltip />} cursor={{ fill: "transparent" }} />
         <Pie
