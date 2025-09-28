@@ -1,21 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaEnvelope, FaLocationDot, FaPhone } from "react-icons/fa6";
+import {
+  FaEnvelope,
+  FaFacebook,
+  FaLocationDot,
+  FaPhone,
+  FaSquareWhatsapp,
+} from "react-icons/fa6";
+import { IoLogoWechat } from "react-icons/io5";
 
 export default function Footer() {
   const nav = (
     <>
+      <Link className="link link-hover" href="/">
+        Home
+      </Link>
       <Link className="link link-hover" href="/services">
         Services
       </Link>
-      <Link className="link link-hover" href="/projects">
-        Projects
-      </Link>
-      <Link className="link link-hover" href="/whoweare">
-        Who We Are
-      </Link>
-      <Link className="link link-hover" href="/team">
-        Team
+      <Link className="link link-hover" href="/contact">
+        Contact Us
       </Link>
     </>
   );
@@ -41,29 +45,37 @@ export default function Footer() {
           <h6 className="footer-title">Company</h6>
           {nav}
         </nav>
-        <nav>
-          <h6 className="footer-title">Quick Links</h6>
-          <Link className="link link-hover" href="/partners">
-            Partners
-          </Link>
-          <Link className="link link-hover" href="/workprocess">
-            Work Process
-          </Link>
-          <Link className="link link-hover" href="/contact">
-            Contact
-          </Link>
-        </nav>
+
         <nav>
           <h6 className="footer-title">Contact</h6>
+          <a href="tel:+8801741587230">
+            <p className="flex items-center gap-2">
+              <FaPhone /> +880 1741 587 230
+            </p>
+          </a>
+          <a href="mailto:contact@shajidint.com">
+            <p className="flex items-center gap-2">
+              <FaEnvelope /> contact@shajidint.com
+            </p>
+          </a>
           <p className="flex items-center gap-2">
-            <FaPhone /> +880 1741 587 230
+            <FaLocationDot /> 195/2/G, Shantibagh,
+            <br /> Dhaka-1217, Bangladesh
           </p>
-          <p className="flex items-center gap-2">
-            <FaEnvelope /> aminul@shajidint.com
-          </p>
-          <p className="flex items-center gap-2">
-            <FaLocationDot /> 195/2/G, Shantibagh, Dhaka-1217, Bangladesh
-          </p>
+        </nav>
+        <nav>
+          <h6 className="footer-title">Find Us</h6>
+          <div className="flex gap-x-3">
+            <a className="text-xl" href="#">
+              <FaFacebook />
+            </a>
+            <a className="text-xl" href="#">
+              <FaSquareWhatsapp />
+            </a>
+            <a className="text-xl" href="#">
+              <IoLogoWechat />
+            </a>
+          </div>
         </nav>
       </footer>
       <footer className="footer sm:footer-horizontal footer-center bg-black  text-base-content p-4">
@@ -74,14 +86,6 @@ export default function Footer() {
             </span>
             - All right reserved by{" "}
             <span className="text-base-content">Shajid International.</span>{" "}
-            Developed by{" "}
-            <a
-              className="link text-base-content"
-              href="https://www.fiverr.com/ahsanulazim6"
-              target="_blank"
-            >
-              Ahsanul Azim Plabon
-            </a>
           </p>
         </aside>
       </footer>
