@@ -187,12 +187,15 @@ export default function MyContext({ children }) {
 
   //Visitor Tracking Post
   useEffect(() => {
-    const alreadyTracked = localStorage.getItem("visitorTracked");
-    if (alreadyTracked) return;
+    const ua = navigator.userAgent;
 
-    const deviceType = /Mobi|Android/i.test(navigator.userAgent)
-      ? "mobile"
-      : "desktop";
+    let name = "desktop"; // default
+
+    if (/Tablet|iPad/i.test(ua)) {
+      deviceType = "tablet";
+    } else if (/Mobi|Android/i.test(ua)) {
+      deviceType = "mobile";
+    }
 
     fetch(`${serverUrl}/visitors/track-visitor`, {
       method: "POST",
@@ -202,7 +205,7 @@ export default function MyContext({ children }) {
       },
       body: JSON.stringify({}),
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ deviceType }),
+      body: JSON.stringify({ name }),
     }).then(() => {
       localStorage.setItem("visitorTracked", "true");
     });
@@ -210,16 +213,18 @@ export default function MyContext({ children }) {
 
   //Visitor Count Context
   const [visitorData, setVisitorData] = useState([]);
+  const [deviceData, setDeviceData] = useState([]);
 
   useEffect(() => {
     fetch(`${serverUrl}/visitors/visitor-stats`)
       .then((res) => res.json())
-      .then((stats) => {
-        const formatted = stats.dateStats.map((d) => ({
-          date: new Date(d.date).toLocaleDateString("en-BD"),
-          count: d.count,
-        }));
-        setVisitorData(formatted);
+      .then((data) => {
+        setVisitorData({
+          daily: data.daily,
+          monthly: data.monthly,
+          yearly: data.yearly,
+        });
+        setDeviceData(data.deviceBreakdown);
       });
   }, []);
 
@@ -240,6 +245,7 @@ export default function MyContext({ children }) {
     massageCount,
     massageGrowth,
     visitorData,
+    deviceData,
   };
 
   return <NavContext value={data}>{children}</NavContext>;

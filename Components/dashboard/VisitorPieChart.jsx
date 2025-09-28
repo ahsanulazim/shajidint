@@ -13,7 +13,10 @@ const data = [
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
 
 export default function VisitorPieChart() {
-  const { visitorData } = useContext(NavContext);
+  const { visitorData, deviceData } = useContext(NavContext);
+
+  console.log(visitorData);
+  console.log("device:", deviceData);
 
   return (
     <ResponsiveContainer width="100%" height={340}>
@@ -31,7 +34,7 @@ export default function VisitorPieChart() {
         </text>
         <Tooltip content={<ChartTooltip />} cursor={{ fill: "transparent" }} />
         <Pie
-          data={visitorData}
+          data={deviceData}
           cx="50%"
           cy="50%"
           innerRadius={100}
