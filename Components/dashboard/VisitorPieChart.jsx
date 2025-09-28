@@ -1,5 +1,9 @@
+"use client";
+
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import ChartTooltip from "./ChartTooltip";
+import { useContext } from "react";
+import { NavContext } from "@/context/MyContext";
 
 const data = [
   { name: "Mobile", value: 400 },
@@ -9,6 +13,8 @@ const data = [
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
 
 export default function VisitorPieChart() {
+  const { visitorData } = useContext(NavContext);
+
   return (
     <ResponsiveContainer width="100%" height={340}>
       <PieChart width={420} height={420}>
@@ -23,12 +29,9 @@ export default function VisitorPieChart() {
         >
           75%
         </text>
-        <Tooltip
-          content={<ChartTooltip />}
-          cursor={{ fill: "transparent" }}
-        />
+        <Tooltip content={<ChartTooltip />} cursor={{ fill: "transparent" }} />
         <Pie
-          data={data}
+          data={visitorData}
           cx="50%"
           cy="50%"
           innerRadius={100}

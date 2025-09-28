@@ -65,9 +65,7 @@ export default function Dashboard() {
           <Charts />
         </div>
         <div className="widgetDash">
-          <h2 className="text-xl mb-5 font-bold tracking-tighter">
-            Visitors
-          </h2>
+          <h2 className="text-xl mb-5 font-bold tracking-tighter">Visitors</h2>
           <div className="divider mb-5"></div>
           <VisitorPieChart />
           <div className="stats w-full bg-base-300">

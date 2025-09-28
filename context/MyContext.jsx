@@ -118,7 +118,7 @@ export default function MyContext({ children }) {
     fetch(`${serverUrl}/msgs`)
       .then((res) => res.json())
       .then((data) => setMsgs(data));
-  }, [msgs]);
+  }, []);
 
   //Massage Data for Chart
 
@@ -185,6 +185,21 @@ export default function MyContext({ children }) {
       });
   }, []);
 
+  //Visitor Count Context
+  const [visitorData, setVisitorData] = useState([]);
+
+  useEffect(() => {
+    fetch(`${serverUrl}/visitors/stats`)
+      .then((res) => res.json())
+      .then((stats) => {
+        const formatted = stats.dateStats.map((d) => ({
+          date: new Date(d.date).toLocaleDateString("en-BD"),
+          count: d.count,
+        }));
+        setVisitorData(formatted);
+      });
+  }, []);
+
   const data = {
     navbar,
     footer,
@@ -201,6 +216,7 @@ export default function MyContext({ children }) {
     stats,
     massageCount,
     massageGrowth,
+    visitorData,
   };
 
   return <NavContext value={data}>{children}</NavContext>;
