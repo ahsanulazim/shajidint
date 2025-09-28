@@ -4,6 +4,7 @@ import { useContext } from "react";
 import Charts from "./Charts";
 import Stats from "./Stats";
 import { NavContext } from "@/context/MyContext";
+import VisitorPieChart from "./VisitorPieChart";
 
 export default function Dashboard() {
   const { massageCount, massageGrowth } = useContext(NavContext);
@@ -50,16 +51,21 @@ export default function Dashboard() {
         </p>
       </div>
       {/* Project Status */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 grid-rows-7 sm:grid-rows-5 gap-5 mt-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 mt-5">
         {dummyStats.map((stat) => (
           <Stats key={stat.id} stat={stat} />
         ))}
-        <div className="bg-base-200 p-5 rounded-md row-span-3 sm:col-span-2 sm:row-span-4">
+      </div>
+      <div className="mt-5 grid grid-cols-2">
+        <div className="widgetDash">
           <h2 className="text-xl mb-5 font-bold tracking-tighter">
             Massage Status
           </h2>
           <div className="divider mb-5"></div>
           <Charts />
+        </div>
+        <div className="widgetdash">
+          <VisitorPieChart />
         </div>
       </div>
     </>
