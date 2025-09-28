@@ -196,6 +196,11 @@ export default function MyContext({ children }) {
 
     fetch(`${serverUrl}/visitors/track-visitor`, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "User-Agent": navigator.userAgent,
+      },
+      body: JSON.stringify({}),
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ deviceType }),
     }).then(() => {
