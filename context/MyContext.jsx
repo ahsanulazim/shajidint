@@ -192,12 +192,12 @@ export default function MyContext({ children }) {
 
     const ua = navigator.userAgent;
 
-    let name = "desktop"; // default
+    let name = "Desktop"; // default
 
     if (/Tablet|iPad/i.test(ua)) {
-      name = "tablet";
+      name = "Tablet";
     } else if (/Mobi|Android/i.test(ua)) {
-      name = "mobile";
+      name = "Mobile";
     }
 
     fetch(`${serverUrl}/visitors/track-visitor`, {
