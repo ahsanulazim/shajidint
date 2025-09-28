@@ -19,7 +19,7 @@ export default function ContactFrom() {
     const phone = e.target.phone.value;
     const query = e.target.query.value;
 
-    fetch(`${serverUrl}/msg`, {
+    fetch(`${serverUrl}/msgs`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, email, phone, company, query }),
