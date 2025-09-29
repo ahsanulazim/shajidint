@@ -8,7 +8,7 @@ export default function Navbar({ glass, user }) {
         <Link href="/">Home</Link>
       </li>
       <li>
-        <Link href="/ourservices">Our Services</Link>
+        <Link href="/#services">Our Services</Link>
       </li>
       <li>
         <Link href="/contact">Contact Us</Link>

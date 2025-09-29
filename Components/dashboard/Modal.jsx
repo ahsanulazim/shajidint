@@ -56,7 +56,9 @@ export default function Modal({ ref, remove }) {
           <div className="modal-action justify-center gap-x-8">
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
-              <button className="btn rounded-md">No, Keep Him</button>
+              <button className="btn btn-success rounded-md">
+                No, Keep Him
+              </button>
             </form>
 
             <button

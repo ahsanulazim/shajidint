@@ -15,7 +15,7 @@ export default function Footer() {
       <Link className="link link-hover" href="/">
         Home
       </Link>
-      <Link className="link link-hover" href="/services">
+      <Link className="link link-hover" href="/#services">
         Services
       </Link>
       <Link className="link link-hover" href="/contact">
@@ -28,17 +28,18 @@ export default function Footer() {
     <div className="bg-base-300" data-theme="dark">
       <footer className="footer sm:footer-horizontal grid-rows-2 lg:grid-rows-1 max-w-[1440px] mx-auto text-base-content px-5 py-10 sm:py-14 sm:px-10">
         <aside>
-          <Image
-            width={176}
-            height={46}
-            src="/shajidintDark.svg"
-            alt="Shajid International"
-            className="w-full max-w-44 mb-5"
-          />
-          <p className="max-w-96">
-            Shajid International With more than 7 years of national and global
-            experience. Shajid International is continuing to serve businesses
-            around the globe.
+          <Link href="/" className="w-full">
+            <Image
+              width={176}
+              height={46}
+              src="/shajidintDark.svg"
+              alt="Shajid International"
+              className="w-full max-w-44 mb-5"
+            />
+          </Link>
+          <p className="max-w-80">
+            All kinds of Military Vehicles Modernization Standardization & All
+            types of Spare Parts Supply
           </p>
         </aside>
         <nav>
