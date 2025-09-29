@@ -1,4 +1,5 @@
 import BentoGrid from "./BentoGrid";
+import ServiceCol from "./ServiceCol";
 
 export default function Services() {
   return (
@@ -16,7 +17,7 @@ export default function Services() {
           We do all kinds of Military Vehicles Modernization Standardization &
           All types of Spare Parts Supply
         </p>
-        <BentoGrid />
+        <ServiceCol />
       </div>
     </section>
   );

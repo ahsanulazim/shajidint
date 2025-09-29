@@ -1,17 +1,36 @@
-'use client'
+"use client";
 
 import Carousel from "react-multi-carousel";
-import 'react-multi-carousel/lib/styles.css';
-import "./HeroCarousel.css"
+import "react-multi-carousel/lib/styles.css";
+import "./HeroCarousel.css";
 import Image from "next/image";
 
 export default function HeroCarousel() {
-
   const images = [
-    { id: 0, src: '/carousel/army 1.webp', title: 'Tank', des: 'Armored Military Vehicle' },
-    { id: 1, src: '/carousel/army 2.webp', title: 'Armored Vehicle', des: 'Armored Military Vehicle' },
-    { id: 2, src: '/carousel/army 3.webp', title: 'Army', des: 'Weapon and Ammunition' },
-    { id: 3, src: '/carousel/army 4.webp', title: 'Helicopter', des: 'Military Helicopter' },
+    {
+      id: 0,
+      src: "/carousel/Tank.jpg",
+      title: "Tank",
+      des: "APC BTR 80 8 wheel",
+    },
+    {
+      id: 1,
+      src: "/carousel/MBT.jpg",
+      title: "Tank",
+      des: "Tank MBT",
+    },
+    {
+      id: 2,
+      src: "/carousel/marcedez.jpg",
+      title: "Truck",
+      des: "Mercedez Benz Truck",
+    },
+    {
+      id: 3,
+      src: "/carousel/army 4.webp",
+      title: "Helicopter",
+      des: "Military Helicopter",
+    },
   ];
 
   const responsive = {
@@ -19,7 +38,6 @@ export default function HeroCarousel() {
     tablet: { breakpoint: { max: 1024, min: 464 }, items: 1 },
     mobile: { breakpoint: { max: 464, min: 0 }, items: 1 },
   };
-
 
   return (
     <>
@@ -56,7 +74,14 @@ export default function HeroCarousel() {
       >
         {images.map((image) => (
           <div className="relative h-full m-auto w-full">
-            <Image width={1440} height={455} src={image.src} alt={image.title} key={image.id} className=" h-full w-full object-cover" />
+            <Image
+              width={1440}
+              height={455}
+              src={image.src}
+              alt={image.title}
+              key={image.id}
+              className=" h-[455px] w-full object-cover"
+            />
             <div className="absolute bottom-5 left-5 text-white p-3 rounded-md max-w-xs">
               <h3 className="text-2xl tracking-tight">{image.title}</h3>
               <p className="text-gray-400">{image.des}</p>
@@ -65,5 +90,5 @@ export default function HeroCarousel() {
         ))}
       </Carousel>
     </>
-  )
+  );
 }
