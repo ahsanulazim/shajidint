@@ -11,6 +11,7 @@ import {
   FaSun,
   FaUser,
 } from "react-icons/fa6";
+import Notification from "./Notification";
 
 export default function NavDash({ logout }) {
   const { user, currentUser, isDark, setIsDark } = useContext(NavContext);
@@ -72,29 +73,10 @@ export default function NavDash({ logout }) {
                 <span className="badge badge-xs badge-error indicator-item"></span>
               </div>
             </button>
-            <div
-              tabIndex={0}
-              className="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-64 md:w-80 shadow"
-            >
-              <div className="card-body">
-                <h2 className="text-lg font-bold">Your Notifications</h2>
-                <div role="alert" className="alert alert-info">
-                  <span>12 unread messages. Tap to see.</span>
-                </div>
-                <div role="alert" className="alert alert-success">
-                  <span>Your purchase has been confirmed!</span>
-                </div>
-                <div role="alert" className="alert alert-warning">
-                  <span>Warning: Invalid email address!</span>
-                </div>
-                <div role="alert" className="alert alert-error">
-                  <span>Error! Task failed successfully.</span>
-                </div>
-              </div>
-            </div>
+            <Notification />
           </div>
           <div className="dropdown dropdown-end ms-3">
-            <div
+            <button
               tabIndex={0}
               role="button"
               className="btn btn-ghost btn-circle avatar"
@@ -112,7 +94,7 @@ export default function NavDash({ logout }) {
                   </div>
                 )}
               </div>
-            </div>
+            </button>
             <ul
               tabIndex={0}
               className="menu dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"

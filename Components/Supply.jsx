@@ -6,7 +6,7 @@ export default function Supply() {
         title: "Logistics",
         heading: 'Strategic Supply & Procurement',
         desc: "Our logistics team ensures smooth, compliant procurement of essential supplies. We manage sourcing, documentation, and delivery helping defense agencies stay equipped, efficient, and focused on their mission.",
-        img: "/logistics.jpg",
+        img: "/army truck.jpg",
         btn1: "Get Quote",
         btn2: "Services"
     }
