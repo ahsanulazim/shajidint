@@ -1,7 +1,6 @@
 "use client";
 
 import { NavContext } from "@/context/MyContext";
-import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
 import {
@@ -102,12 +101,7 @@ export default function NavDash({ logout }) {
             >
               <div className="w-10 rounded-full">
                 {currentUser && currentUser.profilePic ? (
-                  <Image
-                    width={40}
-                    height={40}
-                    alt={user?.displayName}
-                    src={currentUser.profilePic}
-                  />
+                  <img alt={user?.displayName} src={currentUser.profilePic} />
                 ) : (
                   <div className="avatar avatar-placeholder">
                     <div className="bg-neutral text-neutral-content w-10 rounded-full">

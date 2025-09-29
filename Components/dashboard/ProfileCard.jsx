@@ -18,6 +18,7 @@ import { NavContext } from "@/context/MyContext";
 
 export default function ProfileCard() {
   const { user, currentUser, serverUrl } = useContext(NavContext);
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   const [isEditing, setIsEditing] = useState(false);
   const [profileData, setProfileData] = useState({
@@ -73,16 +74,21 @@ export default function ProfileCard() {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    try {
-      const formData = new FormData();
-      formData.append("profilePic", file);
+    const formData = new FormData();
+    formData.append("profilePic", file);
 
-      const res = await fetch(`${serverUrl}/users/${user.email}/image`, {
-        method: "PUT",
-        body: formData,
-      });
+    const xhr = new XMLHttpRequest();
+    xhr.open("PUT", `${serverUrl}/users/${user.email}/image`);
 
-      const data = await res.json();
+    xhr.upload.onprogress = (event) => {
+      if (event.lengthComputable) {
+        const percent = Math.round((event.loaded / event.total) * 100);
+        setUploadProgress(percent);
+      }
+    };
+
+    xhr.onload = () => {
+      const data = JSON.parse(xhr.responseText);
       if (data.success) {
         toast.success("Profile picture uploaded");
         setProfileData((prev) => ({
@@ -93,17 +99,22 @@ export default function ProfileCard() {
       } else {
         toast.error(data.message || "Failed to upload profile picture");
       }
-    } catch (err) {
-      console.error("Upload error:", err);
+      setUploadProgress(0);
+    };
+
+    xhr.onerror = () => {
       toast.error("Server error");
-    } finally {
-      e.target.value = "";
-    }
+      setUploadProgress(0);
+    };
+
+    xhr.send(formData);
   };
 
   const renderInput = (label, name, type = "text") => (
     <>
-      <label className="label" htmlFor={name}>{label}</label>
+      <label className="label" htmlFor={name}>
+        {label}
+      </label>
       <input
         type={type}
         name={name}
@@ -135,9 +146,16 @@ export default function ProfileCard() {
   return (
     <div className="md:flex md:items-center lg:max-w-3xl bg-base-200 rounded-md overflow-clip shadow-sm">
       <div className="rounded-md overflow-clip md:p-5 md:pr-0 relative w-full">
+        {uploadProgress > 0 && (
+          <progress
+            className="progress progress-accent w-full md:w-[calc(100%-20px)] absolute top-1/2"
+            value={uploadProgress}
+            max="100"
+          ></progress>
+        )}
         {profileData?.proPic ? (
           <img
-            className="w-full md:rounded-md"
+            className="w-full aspect-square object-cover overflow-hidden md:rounded-md"
             src={profileData.proPic}
             alt={profileData.name || "Profile Picture"}
           />
