@@ -70,7 +70,10 @@ export default function NavDash({ logout }) {
             >
               <div className="indicator">
                 <FaBell className="size-5" />
-                <span className="badge badge-xs badge-error indicator-item"></span>
+                <div className="inline-grid *:[grid-area:1/1]">
+                  <div className="status status-error animate-ping"></div>
+                  <div className="status status-error"></div>
+                </div>
               </div>
             </button>
             <Notification />

@@ -18,6 +18,7 @@ import {
 export default function Inbox() {
   const { msgs } = useContext(NavContext);
   const [delMsg, setDelMsg] = useState(null);
+  const [filter, setFilter] = useState("all");
 
   const deleteMsg = useRef();
 
@@ -42,44 +43,124 @@ export default function Inbox() {
       {/* Massages box */}
 
       <ul className="list bg-base-100 rounded-box shadow-md mt-5">
-
-        <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">Recent Massages First</li>
+        <li className="p-4 pb-2 tracking-wide flex gap-2">
+          <button
+            className={`btn btn-sm rounded-md ${
+              filter === "all" ? "btn-success" : "btn-outline opacity-60"
+            }`}
+            onClick={() => setFilter("all")}
+          >
+            All
+          </button>
+          <button
+            className={`btn btn-sm rounded-md ${
+              filter === "unread" ? "btn-success" : "btn-outline opacity-60"
+            }`}
+            onClick={() => setFilter("unread")}
+          >
+            Unread
+          </button>
+          <button
+            className={`btn btn-sm rounded-md ${
+              filter === "read" ? "btn-success" : "btn-outline opacity-60"
+            }`}
+            onClick={() => setFilter("read")}
+          >
+            Read
+          </button>
+        </li>
 
         {msgs
-          ? msgs.map((msg, i) => (
-            <li className="list-row items-center" key={msg._id}>
-              <Link href={`/dashboard/inbox/${msg._id}`} className="list-col-grow flex-1 min-w-0">
-
-                <h3 className="font-bold uppercase">{msg.name}</h3>
-                <p className="text-xs opacity-60 truncate">{msg.query}</p>
-                <span className="text-xs flex items-center gap-2 mt-1 opacity-60"><FaRegCalendarDays /> {msg.sendDate}</span>
-
-              </Link>
-              <div className="dropdown dropdown-end">
-                <button tabIndex={0} role="button" className="btn m-1 btn-soft btn-info btn-square btn-sm md:btn-md"><FaEllipsisVertical /></button>
-                <ul tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box z-1 w-52 p-2 shadow-md">
-                  <li><Link href={`/dashboard/inbox/${msg._id}`} className="list-col-grow "><FaEye className="text-success" /> View</Link></li>
-                  <li><a href={`tel:${msg.phone}`}><FaPhone className="text-info" /> Call</a></li>
-                  <li><a href={`mailto:${msg.email}`}><FaEnvelope className="text-warning" /> Send Email</a></li>
-                  <li><button onClick={() => handleMsgDel(msg._id)}>
-                    <FaTrashCan className="text-error" /> Delete
-                  </button></li>
-                </ul>
-              </div>
-            </li>
-          ))
+          ? msgs
+              .filter((msg) => {
+                if (filter === "unread") return msg.read === false;
+                if (filter === "read") return msg.read === true;
+                return true;
+              })
+              .map((msg, i) => (
+                <li
+                  className={`list-row items-center ${
+                    msg.read === false ? "bg-base-200" : ""
+                  }`}
+                  key={msg._id}
+                >
+                  <Link
+                    href={`/dashboard/inbox/${msg._id}`}
+                    className="list-col-grow flex-1 min-w-0"
+                  >
+                    <h3 className="font-bold uppercase">
+                      {msg.name}
+                      {msg.read === false ? (
+                        <span className="text-warning">*</span>
+                      ) : (
+                        <></>
+                      )}
+                    </h3>
+                    <p
+                      className={`text-xs ${
+                        msg.read === false
+                          ? "font-bold text-warning"
+                          : "opacity-60"
+                      } truncate`}
+                    >
+                      {msg.query}
+                    </p>
+                    <span
+                      className={`text-xs flex items-center gap-2 mt-1 opacity-60`}
+                    >
+                      <FaRegCalendarDays /> {msg.sendDate}
+                    </span>
+                  </Link>
+                  <div className="dropdown dropdown-end">
+                    <button
+                      tabIndex={0}
+                      role="button"
+                      className="btn m-1 btn-soft btn-info btn-square btn-sm md:btn-md"
+                    >
+                      <FaEllipsisVertical />
+                    </button>
+                    <ul
+                      tabIndex={0}
+                      className="dropdown-content menu bg-base-200 rounded-box z-1 w-52 p-2 shadow-md"
+                    >
+                      <li>
+                        <Link
+                          href={`/dashboard/inbox/${msg._id}`}
+                          className="list-col-grow "
+                        >
+                          <FaEye className="text-success" /> View
+                        </Link>
+                      </li>
+                      <li>
+                        <a href={`tel:${msg.phone}`}>
+                          <FaPhone className="text-info" /> Call
+                        </a>
+                      </li>
+                      <li>
+                        <a href={`mailto:${msg.email}`}>
+                          <FaEnvelope className="text-warning" /> Send Email
+                        </a>
+                      </li>
+                      <li>
+                        <button onClick={() => handleMsgDel(msg._id)}>
+                          <FaTrashCan className="text-error" /> Delete
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              ))
           : Array.from({ length: 5 }).map((_, i) => (
-            <li className="list-row items-center" key={i}>
-              <div className="list-col-grow flex-1 min-w-0">
-
-                <Skeleton className="block max-w-xs" />
-                <Skeleton className="block mt-2" />
-                <span className="text-xs flex items-center gap-2 mt-2 opacity-60"><FaRegCalendarDays /> <Skeleton /></span>
-
-              </div>
-            </li>))
-        }
-
+              <li className="list-row items-center" key={i}>
+                <div className="list-col-grow flex-1 min-w-0">
+                  <Skeleton className="block max-w-xs" />
+                  <Skeleton className="block mt-2" />
+                  <span className="text-xs flex items-center gap-2 mt-2 opacity-60">
+                    <FaRegCalendarDays /> <Skeleton />
+                  </span>
+                </div>
+              </li>
+            ))}
       </ul>
     </>
   );

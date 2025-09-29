@@ -18,6 +18,16 @@ export default function Page() {
       .then((data) => setQuery(data));
   }, [serverUrl, massage]);
 
+  //msg read patch
+
+  useEffect(() => {
+    if (massage) {
+      fetch(`${serverUrl}/msgs/${massage}`, {
+        method: "PATCH",
+      });
+    }
+  }, [serverUrl, massage]);
+
   return (
     <>
       <Breadcrumbs title="Inbox" secTitle="Massage" />
@@ -31,29 +41,32 @@ export default function Page() {
       </div>
 
       <div className="bg-base-100 shadow-md rounded-lg p-5 mt-5">
-        {query ? <>
-          <p> {query.query}</p>
-          <div className="mt-5">
-            <h4>
-              <span className="font-bold">Author :</span> {query.name}
-            </h4>
-            <a
-              href={`mailto:${query.email}`}
-              className="w-fit text-gray-500 flex gap-x-2 items-center"
-            >
-              <FaEnvelope /> {query.email}
-            </a>
-            <a
-              href={`tel:${query.phone}`}
-              className="w-fit text-gray-500 flex gap-x-2 items-center"
-            >
-              <FaPhone /> {query.phone}
-            </a>
-            <p className="flex items-center gap-x-2 text-gray-500 w-fit">
-              <FaRegCalendarDays /> {query.sendDate}
-            </p>
-          </div> </>
-          : <div className="flex flex-col gap-y-3">
+        {query ? (
+          <>
+            <p> {query.query}</p>
+            <div className="mt-5">
+              <h4>
+                <span className="font-bold">Author :</span> {query.name}
+              </h4>
+              <a
+                href={`mailto:${query.email}`}
+                className="w-fit text-gray-500 flex gap-x-2 items-center"
+              >
+                <FaEnvelope /> {query.email}
+              </a>
+              <a
+                href={`tel:${query.phone}`}
+                className="w-fit text-gray-500 flex gap-x-2 items-center"
+              >
+                <FaPhone /> {query.phone}
+              </a>
+              <p className="flex items-center gap-x-2 text-gray-500 w-fit">
+                <FaRegCalendarDays /> {query.sendDate}
+              </p>
+            </div>{" "}
+          </>
+        ) : (
+          <div className="flex flex-col gap-y-3">
             <Skeleton className="block" />
             <Skeleton className="block" />
             <Skeleton className="block" />
@@ -64,7 +77,8 @@ export default function Page() {
             <Skeleton className="block max-w-56" />
             <Skeleton className="block max-w-52" />
             <Skeleton className="block max-w-60" />
-          </div>}
+          </div>
+        )}
       </div>
     </>
   );
