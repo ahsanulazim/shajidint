@@ -17,7 +17,7 @@ export default function Supply() {
     title: "Military Tank",
     heading: "Tank MBT - 2000",
     desc: "Shajid International supplies key spare parts for the MBT-2000 main battle tank, supporting its firepower, mobility, and durability. Their inventory covers mechanical, structural, and electronic components, helping ensure the tank stays mission-ready, especially for defense forces in Bangladesh.",
-    img: "/carousel/MBT.jpg",
+    img: "/service/army (1).jpg",
   };
 
   return (
