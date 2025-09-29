@@ -16,7 +16,7 @@ import {
 } from "react-icons/fa6";
 
 export default function Inbox() {
-  const { msgs } = useContext(NavContext);
+  const { msgs, isDark } = useContext(NavContext);
   const [delMsg, setDelMsg] = useState(null);
   const [filter, setFilter] = useState("all");
 
@@ -46,7 +46,7 @@ export default function Inbox() {
         <li className="p-4 pb-2 tracking-wide flex gap-2">
           <button
             className={`btn btn-sm rounded-md ${
-              filter === "all" ? "btn-success" : "btn-outline opacity-60"
+              filter === "all" ? "btn-info" : "btn-outline opacity-60"
             }`}
             onClick={() => setFilter("all")}
           >
@@ -54,7 +54,7 @@ export default function Inbox() {
           </button>
           <button
             className={`btn btn-sm rounded-md ${
-              filter === "unread" ? "btn-success" : "btn-outline opacity-60"
+              filter === "unread" ? "btn-info" : "btn-outline opacity-60"
             }`}
             onClick={() => setFilter("unread")}
           >
@@ -62,7 +62,7 @@ export default function Inbox() {
           </button>
           <button
             className={`btn btn-sm rounded-md ${
-              filter === "read" ? "btn-success" : "btn-outline opacity-60"
+              filter === "read" ? "btn-info" : "btn-outline opacity-60"
             }`}
             onClick={() => setFilter("read")}
           >
@@ -80,7 +80,11 @@ export default function Inbox() {
               .map((msg, i) => (
                 <li
                   className={`list-row items-center ${
-                    msg.read === false ? "bg-base-200" : ""
+                    msg.read === false
+                      ? isDark === false
+                        ? "bg-info/30"
+                        : "bg-info-content"
+                      : ""
                   }`}
                   key={msg._id}
                 >
@@ -91,16 +95,14 @@ export default function Inbox() {
                     <h3 className="font-bold uppercase">
                       {msg.name}
                       {msg.read === false ? (
-                        <span className="text-warning">*</span>
+                        <span className="text-info">*</span>
                       ) : (
                         <></>
                       )}
                     </h3>
                     <p
                       className={`text-xs ${
-                        msg.read === false
-                          ? "font-bold text-warning"
-                          : "opacity-60"
+                        msg.read === false ? "font-bold" : "opacity-60"
                       } truncate`}
                     >
                       {msg.query}
@@ -115,7 +117,9 @@ export default function Inbox() {
                     <button
                       tabIndex={0}
                       role="button"
-                      className="btn m-1 btn-soft btn-info btn-square btn-sm md:btn-md"
+                      className={`btn m-1  ${
+                        msg.read === false ? "" : "btn-soft"
+                      } btn-info btn-square btn-sm md:btn-md`}
                     >
                       <FaEllipsisVertical />
                     </button>
