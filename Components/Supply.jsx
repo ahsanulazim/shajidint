@@ -20,7 +20,7 @@ export default function Supply() {
     }
 
     return (
-        <section className="max-w-[1440px] mx-auto px-5 lg:px-10 py-20">
+        <section className="max-w-[1440px] bg-base-300 mx-auto px-5 lg:px-10 py-20" data-theme='light'>
             <div className="text-center space-y-4 mb-10">
                 <h2 className="badge badge-outline badge-success py-5 mb-3 uppercase"><div className="inline-grid *:[grid-area:1/1]">
                     <div className="status status-success animate-ping"></div>

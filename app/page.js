@@ -8,7 +8,7 @@ import Supply from "@/Components/Supply";
 export default function Home() {
   return (
     <>
-      <main className="bg-bgCustom">
+      <main className="bg-base-300" data-theme='light'>
         <Hero />
 
         {/* Logo Marquee Section */}
@@ -28,9 +28,9 @@ export default function Home() {
         <section className=" py-15 px-5 lg:px-10">
           <HeroCarousel />
         </section>
-        {/* <Supply /> */}
+        <Supply />
         <Services />
-        <section className="bg-base-300" data-theme="light">
+        <section className="bg-base-300">
           <Contact />
         </section>
       </main>
