@@ -54,9 +54,9 @@ export default function Footer() {
               <FaPhone /> +880 1741 587 230
             </p>
           </a>
-          <a href="mailto:contact@shajidint.com">
+          <a href="mailto:shajidint@gmail.com">
             <p className="flex items-center gap-2">
-              <FaEnvelope /> contact@shajidint.com
+              <FaEnvelope /> shajidint@gmail.com
             </p>
           </a>
           <p className="flex items-center gap-2">

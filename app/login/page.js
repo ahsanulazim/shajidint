@@ -55,7 +55,10 @@ export default function Login() {
   if (user) return <Loader />;
   return (
     <>
-      <main className="h-dvh bg-bgCustom flex flex-col justify-center items-center pt-[80px]">
+      <main
+        className="h-dvh bg-bgCustom flex flex-col justify-center items-center pt-[80px]"
+        data-theme="light"
+      >
         <form
           className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4"
           onSubmit={processLogin}
@@ -106,9 +109,10 @@ export default function Login() {
               <>Login</>
             )}
           </button>
-          <Link href="/forgetpass" className="link link-primary text-center">Forgot Password?</Link>
+          <Link href="/forgetpass" className="link link-primary text-center">
+            Forgot Password?
+          </Link>
         </form>
-
       </main>
     </>
   );
