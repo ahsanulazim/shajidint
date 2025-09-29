@@ -19,7 +19,7 @@ export default function Contact() {
         <div className="flex flex-col gap-y-7">
           <p className="flex items-center gap-x-2">
             <FaRegEnvelope />
-            <a href="mailto:contac@shajidint.com">contact@shajidint.com</a>
+            <a href="mailto:shajidint@gmail.com">shajidint@gmail.com</a>
           </p>
           <p className="flex items-center gap-x-2">
             <MdOutlinePhone />
